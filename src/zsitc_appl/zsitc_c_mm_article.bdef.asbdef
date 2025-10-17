@@ -1,0 +1,13 @@
+projection implementation in class zbp_sitc_c_mm_article unique;
+strict ( 2 );
+
+define behavior for ZSITC_C_MM_Article alias Article
+use etag
+
+{
+  use create;
+  use update;
+  use delete;
+
+  use action release;
+}

@@ -1,0 +1,159 @@
+@Metadata.layer: #CUSTOMER
+
+@UI.headerInfo.typeNamePlural: 'Travels'
+@UI.headerInfo.typeName: 'Travel'
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'TravelId'
+@UI.headerInfo.description.type: #STANDARD
+@UI.headerInfo.description.value: 'CustomerName'
+
+
+annotate entity Z000_C_TRAVEL_1 with
+{
+  @UI.facet: [
+    {
+        label: 'Customer Information',
+        purpose: #HEADER,
+        position: 10 ,
+        type: #FIELDGROUP_REFERENCE,
+        targetQualifier: 'customer'
+    },
+    {
+        label: 'Agency Information',
+        purpose: #HEADER,
+        position: 20 ,
+        type: #FIELDGROUP_REFERENCE,
+        targetQualifier: 'agency'
+    },
+    {
+        label: 'General Information',
+        id: 'GeneralInfo',
+        purpose: #STANDARD,
+        position: 10 ,
+        type: #IDENTIFICATION_REFERENCE
+    },
+    {
+        label: 'Booking Information',
+        position: 20,
+        type: #LINEITEM_REFERENCE,
+        targetElement: '_Booking'
+    }
+  ]
+
+  @UI.lineItem: [ {
+    position: 10
+  } ]
+  @UI.selectionField: [{
+    position: 10
+  } ]
+  @UI.identification: [ {
+    position: 10
+  } ]
+  TravelId;
+
+  @Consumption.semanticObject: 'Travel'
+  @UI.lineItem: [ {
+    position: 20,
+    type: #WITH_INTENT_BASED_NAVIGATION,
+    semanticObjectAction: 'manage000'
+  } ]
+  @UI.selectionField: [{
+    position: 20
+  } ]
+  @UI.identification: [ {
+    position: 20
+  } ]
+  AgencyId;
+
+  @UI.lineItem: [ {
+    position: 30
+  } ]
+  @UI.selectionField: [{
+    position: 30
+  } ]
+  @UI.identification: [ {
+    position: 30
+  } ]
+  CustomerId;
+
+  @UI.lineItem: [ {
+    position: 40
+  } ]
+  @UI.selectionField: [{
+    position: 40
+  } ]
+  @UI.identification: [ {
+    position: 40
+  } ]
+  BeginDate;
+
+  @UI.lineItem: [ {
+    position: 50
+  } ]
+  @UI.identification: [ {
+    position: 50
+  } ]
+  EndDate;
+
+  @UI.identification: [ {
+    position: 60
+  } ]
+  BookingFee;
+
+  @UI.lineItem: [ {
+    position: 60
+  } ]
+  @UI.identification: [ {
+    position: 70
+  } ]
+  TotalPrice;
+
+  @UI.lineItem: [ {
+    position: 70
+  } ]
+  @UI.identification: [ {
+    position: 80
+  } ]
+  Description;
+
+  @UI.lineItem: [{
+    position: 80,
+    importance: #HIGH,
+    criticality: 'OverallStatusCriticality' 
+    },{ 
+    type: #FOR_ACTION,
+    dataAction: 'rejectTravel',
+    label: 'Reject Travel'
+    },{
+    type: #FOR_ACTION,
+    dataAction: 'acceptTravel',
+    label: 'Accept Travel'
+  }] 
+  @UI.identification: [ {
+    position: 90
+  } ]
+  OverallStatus;
+  
+  @UI.hidden: true
+  OverallStatusCriticality;
+  
+  @UI.hidden: true
+  OverallStatusText;
+  
+  @UI.fieldGroup: [{ qualifier: 'customer', position: 10 }]
+  CustomerName;
+  @UI.fieldGroup: [{ qualifier: 'customer', position: 20 }]
+  CustomerFirstName;
+  @UI.fieldGroup: [{ qualifier: 'customer', position: 30 }]
+  CustomerCity; 
+  @UI.fieldGroup: [{ qualifier: 'customer', position: 40 }]
+  CustomerPhoneNumber;
+  
+  @UI.fieldGroup: [{ qualifier: 'agency', position: 10 }]
+  AgencyName;
+  @UI.fieldGroup: [{ qualifier: 'agency', position: 20 }]
+  AgencyCity;
+  @UI.fieldGroup: [{ qualifier: 'agency', position: 30 }]
+  AgencyEmailAddress; 
+
+}

@@ -1,0 +1,54 @@
+managed implementation in class zbp_sitc_i_mm_article unique;
+strict ( 2 );
+
+define behavior for ZSITC_I_MM_Article alias Article
+persistent table zsitc_mm_article
+with additional save
+etag master LastChangedAt
+lock master
+early numbering
+authorization master ( instance )
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) ArticleID;
+  association _Text { create; }
+
+  validation validateArticleNo on save { field ArticleNo; }
+
+  action ( features : instance ) release result [1] $self;
+
+  mapping for zsitc_mm_article
+    {
+      ArticleID     = artid;
+      ArticleNo     = artnr;
+      Released      = released;
+      CreatedBy     = created_by;
+      CreatedAt     = created_at;
+      LastChangedBy = last_changed_by;
+      LastChangedAt = last_changed_at;
+    }
+}
+
+define behavior for ZSITC_I_MM_Article_Text alias ArticleText
+persistent table zsitc_mm_articlt
+etag master LastChangedAt
+lock dependent by _Article
+early numbering
+authorization dependent by _Article
+{
+  update;
+  delete;
+  field ( readonly ) ArticleID, Language;
+  association _Article;
+
+  mapping for zsitc_mm_articlt
+    {
+      ArticleID     = artid;
+      Language      = spras;
+      Description   = bezei;
+      LastChangedBy = last_changed_by;
+      LastChangedAt = last_changed_at;
+    }
+}

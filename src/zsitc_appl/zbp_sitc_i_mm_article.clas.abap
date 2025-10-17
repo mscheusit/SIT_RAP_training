@@ -1,0 +1,5 @@
+CLASS zbp_sitc_i_mm_article DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zsitc_i_mm_article.
+ENDCLASS.
+
+CLASS zbp_sitc_i_mm_article IMPLEMENTATION.
+ENDCLASS.
