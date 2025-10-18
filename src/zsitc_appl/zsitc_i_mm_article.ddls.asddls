@@ -10,6 +10,8 @@ define root view entity ZSITC_I_MM_Article
   key artid           as ArticleID,
 
       artnr           as ArticleNo,
+
+      @EndUserText.label: 'Released'
       released        as Released,
 
       @Semantics.user.createdBy: true
