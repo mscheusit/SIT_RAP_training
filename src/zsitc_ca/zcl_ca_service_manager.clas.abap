@@ -1241,7 +1241,7 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
           IF <ls_xdata>-object IS BOUND.
             <ls_xdata>-object->set_dirty( ).
             <ls_xdata>-object->related_object_chgd( iv_chgd = abap_false
-                                                     io_object = <ls_xdata>-object ).
+                                                    io_object = <ls_xdata>-object ).
           ENDIF.
         WHEN gc_aktyp_delete.
           dequeue( <ls_xdata>-objid ).

@@ -1,98 +1,98 @@
-class ZCL_CA_SRVM_BO definition
-  public
-  abstract
-  create public .
+CLASS zcl_ca_srvm_bo DEFINITION
+  PUBLIC
+  ABSTRACT
+  CREATE PUBLIC .
 
-public section.
+  PUBLIC SECTION.
 
-  events OBJECT_CHGD
-    exporting
-      value(EO_OBJECT) type ref to ZCL_CA_SRVM_BO .
-  events OBJECT_FREED
-    exporting
-      value(EO_OBJECT) type ref to ZCL_CA_SRVM_BO .
-  events OBJECT_DIRTY
-    exporting
-      value(EO_OBJECT) type ref to ZCL_CA_SRVM_BO .
+    EVENTS object_chgd
+      EXPORTING
+        VALUE(eo_object) TYPE REF TO zcl_ca_srvm_bo .
+    EVENTS object_freed
+      EXPORTING
+        VALUE(eo_object) TYPE REF TO zcl_ca_srvm_bo .
+    EVENTS object_dirty
+      EXPORTING
+        VALUE(eo_object) TYPE REF TO zcl_ca_srvm_bo .
 
-  methods ADD_OBJECT
-    importing
-      !IO_OBJECT type ref to ZCL_CA_SRVM_BO .
-  methods RAISE_EVENT_CHGD .
-  methods RAISE_EVENT_DIRTY .
-  methods RAISE_EVENT_FREED .
-  methods GET_CLASS_NAME
-    returning
-      value(RV_CLASS_NAME) type CHAR30 .
-  methods CLEAN_UP
-    importing
-      !IV_CANCEL type abap_boolean default ABAP_FALSE .
-  methods CONSTRUCTOR
-    importing
-      !ID_KEY type ref to DATA
-      !ID_XDATA type ref to ZCA_S_XDATA
-      !ID_YDATA type ref to ZCA_S_YDATA
-      !IO_SRVM type ref to ZCL_CA_SERVICE_MANAGER .
-  methods FREE .
-  methods GET_D_KEY
-    returning
-      value(RD_KEY) type ref to DATA .
-  methods GET_S_DATA
-    importing
-      !IV_ACTION type ZCA_E_ACTION optional
-      !IS_KEY type ANY
-    exporting
-      !ES_DATA type ANY
-    raising
-      ZCX_CA_EXCEPTION .
-  methods RELATED_OBJECT_CHGD
-    importing
-      !IV_CHGD type abap_boolean
-      !IO_OBJECT type ref to ZCL_CA_SRVM_BO optional .
-  methods SET_ACTION
-    importing
-      !IV_ACTION type ZCA_E_ACTION .
-  methods SET_DIRTY .
-  methods SET_S_DATA
-    importing
-      !IV_ACTION type ZCA_E_ACTION optional
-      !IS_DATA type ANY .
-  methods PREPARE_FOR_ACTION
-    importing
-      !IV_ACTION type ZCA_E_ACTION
-    raising
-      ZCX_CA_EXCEPTION .
-  methods GET_ACTION
-    returning
-      value(RV_ACTION) type ZCA_E_ACTION .
-  methods SAVE
-    importing
-      !IV_SYNCHRON type CHAR1 optional
-      !IV_COMMIT type CHAR1 optional
-      !IV_FORCE_UPDATE type abap_boolean default ABAP_FALSE
-    raising
-      ZCX_CA_EXCEPTION .
-  methods GET_ID
-    returning
-      value(RV_OBJID) type ZCA_E_OBJID .
-  methods GET_MAINTENANCE_OBJECT
-    returning
-      value(RV_MAINTENANCE_OBJECT) type CHAR10 .
-protected section.
+    METHODS add_object
+      IMPORTING
+        !io_object TYPE REF TO zcl_ca_srvm_bo .
+    METHODS raise_event_chgd .
+    METHODS raise_event_dirty .
+    METHODS raise_event_freed .
+    METHODS get_class_name
+      RETURNING
+        VALUE(rv_class_name) TYPE char30 .
+    METHODS clean_up
+      IMPORTING
+        !iv_cancel TYPE abap_boolean DEFAULT abap_false .
+    METHODS constructor
+      IMPORTING
+        !id_key   TYPE REF TO data
+        !id_xdata TYPE REF TO zca_s_xdata
+        !id_ydata TYPE REF TO zca_s_ydata
+        !io_srvm  TYPE REF TO zcl_ca_service_manager .
+    METHODS free .
+    METHODS get_d_key
+      RETURNING
+        VALUE(rd_key) TYPE REF TO data .
+    METHODS get_s_data
+      IMPORTING
+        !iv_action TYPE zca_e_action OPTIONAL
+        !is_key    TYPE any
+      EXPORTING
+        !es_data   TYPE any
+      RAISING
+        zcx_ca_exception .
+    METHODS related_object_chgd
+      IMPORTING
+        !iv_chgd   TYPE abap_boolean
+        !io_object TYPE REF TO zcl_ca_srvm_bo OPTIONAL .
+    METHODS set_action
+      IMPORTING
+        !iv_action TYPE zca_e_action .
+    METHODS set_dirty .
+    METHODS set_s_data
+      IMPORTING
+        !iv_action TYPE zca_e_action OPTIONAL
+        !is_data   TYPE any .
+    METHODS prepare_for_action
+      IMPORTING
+        !iv_action TYPE zca_e_action
+      RAISING
+        zcx_ca_exception .
+    METHODS get_action
+      RETURNING
+        VALUE(rv_action) TYPE zca_e_action .
+    METHODS save
+      IMPORTING
+        !iv_synchron     TYPE char1 OPTIONAL
+        !iv_commit       TYPE char1 OPTIONAL
+        !iv_force_update TYPE abap_boolean DEFAULT abap_false
+      RAISING
+        zcx_ca_exception .
+    METHODS get_id
+      RETURNING
+        VALUE(rv_objid) TYPE zca_e_objid .
+    METHODS get_maintenance_object
+      RETURNING
+        VALUE(rv_maintenance_object) TYPE char10 .
+  PROTECTED SECTION.
 
-  data MD_XDATA type ref to ZCA_S_XDATA .
-  data MD_YDATA type ref to ZCA_S_YDATA .
-  data MO_SRVM type ref to ZCL_CA_SERVICE_MANAGER .
-  data MD_KEY type ref to DATA .
-  data MV_MAINTENANCE_OBJECT type CHAR10 .
-  data MV_RELATED_OBJECT_CHGD type abap_boolean value ABAP_FALSE ##NO_TEXT.
-  data MV_CLASS_NAME type CHAR30 .
+    DATA md_xdata TYPE REF TO zca_s_xdata .
+    DATA md_ydata TYPE REF TO zca_s_ydata .
+    DATA mo_srvm TYPE REF TO zcl_ca_service_manager .
+    DATA md_key TYPE REF TO data .
+    DATA mv_maintenance_object TYPE char10 .
+    DATA mv_related_object_chgd TYPE abap_boolean VALUE abap_false ##NO_TEXT.
+    DATA mv_class_name TYPE char30 .
   PRIVATE SECTION.
 ENDCLASS.
 
 
 
-CLASS ZCL_CA_SRVM_BO IMPLEMENTATION.
+CLASS zcl_ca_srvm_bo IMPLEMENTATION.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
@@ -314,8 +314,8 @@ CLASS ZCL_CA_SRVM_BO IMPLEMENTATION.
 *----------------------------------------------------------------------*
 
     IF md_xdata->fully_loaded = abap_true AND iv_action IS INITIAL.
-      ASSIGN md_xdata->data->* TO FIELD-SYMBOL(<lfs_data>).
-      es_data = CORRESPONDING #( <lfs_data> ).
+      ASSIGN md_xdata->data->* TO FIELD-SYMBOL(<ls_data>).
+      es_data = CORRESPONDING #( <ls_data> ).
     ELSE.
       CALL METHOD mo_srvm->get
         EXPORTING
