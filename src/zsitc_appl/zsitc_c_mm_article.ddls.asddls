@@ -18,7 +18,7 @@ define root view entity ZSITC_C_MM_Article
               type: #IDENTIFICATION_REFERENCE
           },
           {
-              label: 'Booking Information',
+              label: 'Text',
               position: 20,
               type: #LINEITEM_REFERENCE,
               targetElement: '_Text'

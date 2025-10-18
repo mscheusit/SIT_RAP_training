@@ -51,7 +51,7 @@ CLASS lhc_Article IMPLEMENTATION.
       IF <ls_entity>-ArticleID IS INITIAL.
         " Set Article ID
         TRY.
-            <ls_entity>-ArticleID = zcl_mm_i_article=>create_key(  ).
+            DATA(lv_ArticleID) = zcl_mm_i_article=>create_key(  ).
           CATCH cx_uuid_error INTO DATA(lo_error).
             APPEND VALUE #(  %cid = <ls_entity>-%cid
                              %key = <ls_entity>-%key
@@ -63,9 +63,11 @@ CLASS lhc_Article IMPLEMENTATION.
                           ) TO failed-article.
             CONTINUE.
         ENDTRY.
-        ASSERT <ls_entity>-ArticleID IS NOT INITIAL.
-        APPEND VALUE #( %cid  = <ls_entity>-%cid
-                        %key  = <ls_entity>-%key
+        ASSERT lv_articleid IS NOT INITIAL.
+        APPEND CORRESPONDING #( <ls_entity> ) TO mapped-article ASSIGNING FIELD-SYMBOL(<ls_entiy_mapped>).
+        <ls_entiy_mapped>-ArticleID = lv_articleid.
+        APPEND VALUE #( %cid  = <ls_entiy_mapped>-%cid
+                        %key  = <ls_entiy_mapped>-%key
                       ) TO mapped-article.
       ELSE.
         APPEND CORRESPONDING #( <ls_entity> ) TO mapped-article.

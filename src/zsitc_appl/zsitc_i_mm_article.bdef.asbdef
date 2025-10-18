@@ -12,7 +12,7 @@ authorization master ( instance )
   create ( authorization : global );
   update;
   delete;
-  field ( readonly ) ArticleID;
+  field ( readonly ) ArticleID, Released, CreatedBy, CreatedAt, LastChangedBy, LastChangedAt;
   association _Text { create; }
 
   validation validateArticleNo on save { field ArticleNo; }
