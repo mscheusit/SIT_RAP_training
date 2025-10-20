@@ -54,6 +54,16 @@
             "parameters": {},
             "additionalParameters": "allowed"
           }
+        },
+        "ZSITC_ARTICLER-manage": {
+          "semanticObject": "ZSITC_ARTICLER",
+          "action": "manage",
+          "title": "{{ZSITC_ARTICLER-manage.flpTitle}}",
+          "subTitle": "{{ZSITC_ARTICLER-manage.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
         }
       }
     }
