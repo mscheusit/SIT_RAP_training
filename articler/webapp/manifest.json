@@ -146,7 +146,7 @@
                                     "edit": {
                                         "id": "editButton",
                                         "text": "Edit",
-                                        "press": "edit",
+                                        "press": "onEdit",
                                         "requiresSelection": true
                                     }
                                 }
@@ -181,7 +181,6 @@
                             }
                         },
                         "tableSettings": {
-                            "type": "GridTable",
                             "multiSelect": true
                         }
                     }
