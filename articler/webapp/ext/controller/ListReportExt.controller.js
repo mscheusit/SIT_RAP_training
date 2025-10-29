@@ -1,19 +1,19 @@
-const { cloneElement } = require("react");
 
 sap.ui.define([
     "sap/m/MessageToast",
     "sap/m/ColumnListItem"
-], function(MessageToast) {
+], function (MessageToast, ColumnListItem) {
     'use strict';
 
     return {
-        onInit: function(oEvent) {            
+        onInit: function (oEvent) {
             this.oTableDisplay = this.getView().byId("Article::sap.suite.ui.generic.template.ListReport");
             this.oTableEdit = deepClone(this.oTableDisplay);
         },
 
-        onEdit: function(oEvent) {
+        onEdit: function (oEvent) {
             MessageToast.show("Custom handler invoked.");
         }
-    }
+    };
 });
+
