@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "article",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "Article"
+  },
+  "ui5AppDetails": {
+    "appId": "zsitc.article.article"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_97FB069071A23FB32FC6F076013A1DA505516BBF_TM",
+    "semanticObject": "ZSITC_ARTICLE",
+    "action": "manage",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_97FB069071A23FB32FC6F076013A1DA505516BBF_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Article",
+        "subtitle": "Article (Release)"
+      }
+    }
+  ]
+}

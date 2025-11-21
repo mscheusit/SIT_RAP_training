@@ -8,6 +8,8 @@ define view entity ZSITC_I_MM_Article_Text
 {
 
   key artid           as ArticleID,
+
+      @EndUserText.label: 'Language'
   key spras           as Language,
 
       bezei           as Description,

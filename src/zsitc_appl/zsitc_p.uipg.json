@@ -1,0 +1,26 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "ZSITC Page",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "title": "SIT Page"
+  },
+  "sections": [
+    {
+      "id": "ZSITCP_V",
+      "title": "SIT Vis",
+      "visualizations": [
+        {
+          "id": "ZSITCP_V_VIZ_1",
+          "ladiAssignment": {
+            "ladiId": "ZSITC_ARTICLE_R_2_UI5R",
+            "tileId": "UI5R_10811D2CF6ED0F706D1CB639B833C361C29AAA81_AL"
+          }
+        }
+      ]
+    }
+  ]
+}

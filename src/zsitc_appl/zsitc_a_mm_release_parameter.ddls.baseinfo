@@ -2,14 +2,9 @@
 "BASEINFO":
 {
 "FROM":
-[
-"ZSITC_MM_ARTICLE"
-],
+[],
 "ASSOCIATED":
-[
-"ZSITC_I_MM_ARTICLE_TEXT",
-"ZSITC_I_MM_ARTICLE_TYPE_VH"
-],
+[],
 "BASE":
 [],
 "ANNO_REF":

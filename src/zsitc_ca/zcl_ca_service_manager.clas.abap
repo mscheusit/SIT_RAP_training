@@ -189,16 +189,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_ca_service_manager IMPLEMENTATION.
+CLASS ZCL_CA_SERVICE_MANAGER IMPLEMENTATION.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->SET_ENQUEUE_PARAMS
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ENQUEUE_SCOPE               TYPE        CHAR1 (default ='')
-* | [--->] IV_ENQUEUE_WAIT                TYPE        CHAR1 (default ='')
-* | [--->] IV_ENQUEUE_COLLECT             TYPE        DDENQCOLL (default ='')
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD set_enqueue_params.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -222,11 +215,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->SET_DIRTY
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IT_OBJID                       TYPE        ZCA_T_OBJID(optional)
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD set_dirty.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -257,18 +245,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->SET_DATA
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ACTION                      TYPE        ZCA_E_ACTION(optional)
-* | [--->] IV_ENQUEUE                     TYPE        abap_boolean (default =ABAP_TRUE)
-* | [--->] IV_ID                          TYPE        ZCA_E_OBJID(optional)
-* | [--->] IS_DATA                        TYPE        ANY(optional)
-* | [--->] IT_DATA                        TYPE        STANDARD TABLE(optional)
-* | [<---] ET_OBJECT                      TYPE        ZCA_T_SRVM_BO
-* | [<-()] RT_DATA                        TYPE        ZCA_T_DDATA
-* | [!CX!] ZCX_CA_EXCEPTION
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD set_data.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -404,13 +380,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_CA_SERVICE_MANAGER->SELECT_BY_RANGE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_READ_RANGE_OPTION           TYPE        ZCA_E_READ_RANGE_OPTION
-* | [--->] IT_RANGE                       TYPE        ZCA_T_RANGE
-* | [<---] ET_DATA                        TYPE        STANDARD TABLE
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD select_by_range.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -426,12 +395,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_CA_SERVICE_MANAGER->SELECT_BY_KEY
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IS_KEY                         TYPE        ANY
-* | [<---] ES_DATA                        TYPE        ANY
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD select_by_key.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -447,17 +410,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_CA_SERVICE_MANAGER->SAVE_DB
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_SYNCHRON                    TYPE        CHAR1
-* | [--->] IV_COMMIT                      TYPE        CHAR1
-* | [--->] IV_ACTION                      TYPE        ZCA_E_ACTION
-* | [--->] IT_DATA                        TYPE        STANDARD TABLE
-* | [--->] IT_YDATA                       TYPE        STANDARD TABLE(optional)
-* | [<---] EV_COMMIT_DONE                 TYPE        abap_boolean
-* | [!CX!] ZCX_CA_EXCEPTION
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD save_db.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -473,15 +425,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->SAVE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_SYNCHRON                    TYPE        CHAR1(optional)
-* | [--->] IV_COMMIT                      TYPE        CHAR1(optional)
-* | [--->] IT_OBJID                       TYPE        ZCA_T_OBJID(optional)
-* | [--->] IV_FORCE_UPDATE                TYPE        abap_boolean (default =ABAP_FALSE)
-* | [!CX!] ZCX_CA_EXCEPTION
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD save.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -690,14 +633,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->PREPARE_FOR_ACTION
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ACTION                      TYPE        ZCA_E_ACTION
-* | [--->] IO_OBJECT                      TYPE REF TO ZCL_CA_SRVM_BO(optional)
-* | [--->] IT_OBJECT                      TYPE        ZCA_T_SRVM_BO(optional)
-* | [!CX!] ZCX_CA_EXCEPTION
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD prepare_for_action.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -733,12 +668,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_CA_SERVICE_MANAGER->MOVE_ID_TO_DATA
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ID                          TYPE        ZCA_E_OBJID
-* | [<-->] CS_DATA                        TYPE        ANY
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD move_id_to_data ##NEEDED.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -752,13 +681,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->MESSAGING_UPDATE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_SYNCHRON                    TYPE        CHAR1
-* | [--->] IV_KAPPL                       TYPE        KAPPL
-* | [--->] IV_OBJKEY                      TYPE        NA_OBJKEY
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD messaging_update ##NEEDED.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -772,16 +694,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->MESSAGING
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ACTION                      TYPE        ZCA_E_ACTION(optional)
-* | [--->] IS_DATA                        TYPE        ANY
-* | [<---] EV_KAPPL                       TYPE        KAPPL
-* | [<---] EV_OBJKEY                      TYPE        NA_OBJKEY
-* | [<---] EV_KALSM                       TYPE        KALSM_D
-* | [<---] ET_MSGPA                       TYPE        MSGPA_TTY
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD messaging ##NEEDED.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -795,13 +707,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_CA_SERVICE_MANAGER->IS_VALID
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ACTION                      TYPE        ZCA_E_ACTION
-* | [--->] IS_DATA                        TYPE        ANY
-* | [!CX!] ZCX_CA_EXCEPTION
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD is_valid ##NEEDED.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -815,11 +720,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->GET_MESSAGES
-* +-------------------------------------------------------------------------------------------------+
-* | [<-()] RT_MESSAGE                     TYPE        BAL_T_MSG
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD get_messages.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -837,12 +737,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->GET_ID
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IS_DATA                        TYPE        ANY
-* | [<-()] RV_OBJID                       TYPE        ZCA_E_OBJID
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD get_id ##NEEDED.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -856,11 +750,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_CA_SERVICE_MANAGER->GET_DDIC_DB
-* +-------------------------------------------------------------------------------------------------+
-* | [<-()] RV_DDIC_DB                     TYPE        TROBJ_NAME
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD get_ddic_db ##NEEDED.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -874,21 +763,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->GET
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ACTION                      TYPE        ZCA_E_ACTION(optional)
-* | [--->] IV_ID                          TYPE        ZCA_E_OBJID(optional)
-* | [--->] IS_KEY                         TYPE        ANY(optional)
-* | [--->] IT_RANGE                       TYPE        ZCA_T_RANGE(optional)
-* | [--->] IV_READ_RANGE_OPTION           TYPE        ZCA_E_READ_RANGE_OPTION(optional)
-* | [<---] ES_DATA                        TYPE        ANY
-* | [<---] EO_OBJECT                      TYPE REF TO ZCL_CA_SRVM_BO
-* | [<---] ET_DATA                        TYPE        STANDARD TABLE
-* | [<---] ET_OBJECT                      TYPE        ZCA_T_SRVM_BO
-* | [<---] ET_DDATA                       TYPE        ZCA_T_DDATA
-* | [!CX!] ZCX_CA_EXCEPTION
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD get.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -1040,11 +914,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->FREE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IT_OBJID                       TYPE        ZCA_T_OBJID(optional)
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD free.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -1081,12 +950,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_CA_SERVICE_MANAGER->ENRICH_ID
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IS_DATA                        TYPE        ANY(optional)
-* | [<-->] CV_ID                          TYPE        ZCA_E_OBJID
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD enrich_id ##NEEDED.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -1100,13 +963,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->ENQUEUE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ACTION                      TYPE        ZCA_E_ACTION
-* | [--->] IV_ID                          TYPE        ZCA_E_OBJID
-* | [!CX!] ZCX_CA_EXCEPTION
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD enqueue ##NEEDED.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -1120,11 +976,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->DEQUEUE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ID                          TYPE        ZCA_E_OBJID
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD dequeue ##NEEDED.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -1138,11 +989,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_CA_SERVICE_MANAGER->DATA_IS_DIRTY
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ID                          TYPE        ZCA_E_OBJID
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD data_is_dirty ##NEEDED.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -1156,13 +1002,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_CA_SERVICE_MANAGER->CREATE_OBJECT
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IS_XDATA                       TYPE        ZCA_S_XDATA
-* | [--->] IS_YDATA                       TYPE        ZCA_S_YDATA
-* | [<-()] RO_OBJECT                      TYPE REF TO ZCL_CA_SRVM_BO
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD create_object ##NEEDED.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -1176,12 +1015,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->CLEAN_UP
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_CANCEL                      TYPE        abap_boolean (default =ABAP_FALSE)
-* | [--->] IT_OBJID                       TYPE        ZCA_T_OBJID(optional)
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD clean_up.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -1266,12 +1099,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_CA_SERVICE_MANAGER=>ADD_MESSAGE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IS_MESSAGE                     TYPE        BAL_S_MSG(optional)
-* | [--->] IS_BAPIRETURN1                 TYPE        BAPIRETURN1(optional)
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD add_message.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -1305,12 +1132,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_CA_SERVICE_MANAGER->SET_ACTION
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ID                          TYPE        ZCA_E_OBJID
-* | [--->] IV_ACTION                      TYPE        ZCA_E_ACTION
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD set_action.
 *----------------------------------------------------------------------*
 * Purpose:
@@ -1329,12 +1150,6 @@ CLASS zcl_ca_service_manager IMPLEMENTATION.
   ENDMETHOD.
 
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_CA_SERVICE_MANAGER->ENRICH_DATA_BEFORE_SAVE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ACTION                      TYPE        ZCA_E_ACTION
-* | [--->] ID_DATA                        TYPE REF TO DATA
-* +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD enrich_data_before_save ##NEEDED.
 *----------------------------------------------------------------------*
 * Purpose:

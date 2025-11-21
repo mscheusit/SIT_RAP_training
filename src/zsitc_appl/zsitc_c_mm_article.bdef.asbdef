@@ -1,5 +1,6 @@
 projection implementation in class zbp_sitc_c_mm_article unique;
 strict ( 2 );
+use side effects;
 
 define behavior for ZSITC_C_MM_Article alias Article
 use etag
@@ -10,4 +11,15 @@ use etag
   use delete;
 
   use action release;
+
+  use association _Text { create; }
+}
+
+define behavior for ZSITC_C_MM_Article_Text alias ArticleText
+use etag
+{
+  use update;
+  use delete;
+
+  use association _Article;
 }
