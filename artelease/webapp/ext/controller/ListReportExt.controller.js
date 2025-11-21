@@ -188,6 +188,15 @@ sap.ui.define([
         _oDataErrorHandle: function (oError) {
         },
 
+        onBeforeRebindTableExtension: function (oEvent) {
+            //var oBindingParams = oEvent.getParameter("bindingParams");
+            //oBindingParams.parameters = oBindingParams.parameters || {};
+
+            if (this.oEditTemplateColumnListItem = this.oActualTemplate) {
+                this.getView().getModel().resetChanges();
+            }
+        },
+
         _adjustGuid: function (sGuid) {
             return sGuid.replace('{', '%7B')  // Replace %7B with {
                 .replace('}', '%7D'); // Replace %7D with }
