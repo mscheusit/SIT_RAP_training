@@ -59,7 +59,7 @@ sap.ui.define([
                                     value: strColumnName,
                                     editable: true, //'{Editable}'
                                 });
-                            }
+                            }                            
                         } else {
                             aEditCells[i] = aCells[i].clone();
                             /*aEditCells[i] = new Text({
