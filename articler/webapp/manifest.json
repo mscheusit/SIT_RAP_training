@@ -1,5 +1,5 @@
 {
-  "_version": "1.76.0",
+  "_version": "1.60.0",
   "sap.app": {
     "id": "zsitc.articler",
     "type": "application",
@@ -12,8 +12,8 @@
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
-      "version": "1.19.5",
-      "toolsId": "23edb8cf-e71b-4b78-a861-286a9f7b782e"
+      "version": "1.19.3",
+      "toolsId": "55f7c8bb-b33b-457f-a636-5dbba08608f6"
     },
     "dataSources": {
       "ZSITC_MM_ARTICLE_O2_VAN": {
@@ -63,7 +63,7 @@
   "sap.ui5": {
     "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.139.3",
+      "minUI5Version": "1.120.38",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
@@ -109,6 +109,32 @@
       "config": {},
       "routes": [],
       "targets": {}
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.suite.ui.generic.template.ListReport.view.ListReport": {
+            "controllerName": "zsitc.articler.ext.controller.ListReportExt",
+            "sap.ui.generic.app": {
+              "Article": {
+                "EntitySet": "Article",
+                "Actions": {
+                  "onEdit": {
+                    "id": "onEditButton",
+                    "text": "Edit",
+                    "press": "_onEdit"
+                  },
+                  "onSave": {
+                    "id": "onSaveButton",
+                    "text": "Save",
+                    "press": "_onSave"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "sap.ui.generic.app": {
@@ -135,7 +161,8 @@
               }
             },
             "tableSettings": {
-              "type": "ResponsiveTable"
+              "type": "ResponsiveTable",
+              "multiSelect": true
             }
           }
         },
