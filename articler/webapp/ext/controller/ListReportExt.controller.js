@@ -5,8 +5,10 @@ sap.ui.define([
     "sap/ui/core/Item",
     "sap/m/Text",
     "sap/m/ColumnListItem",
-    "sap/ui/core/ListItem"
-], function (MessageToast, Input, Select, Item, Text, ColumnListItem, ListItem) {
+    "sap/ui/core/ListItem",
+    "../../controller/AddInfoDialog",
+    "sap/ui/model/json/JSONModel"
+], function (MessageToast, Input, Select, Item, Text, ColumnListItem, ListItem, AddInfoDialog, JSONModel) {
     'use strict';
 
     return {
@@ -59,7 +61,7 @@ sap.ui.define([
                                     value: strColumnName,
                                     editable: true, //'{Editable}'
                                 });
-                            }                            
+                            }
                         } else {
                             aEditCells[i] = aCells[i].clone();
                             /*aEditCells[i] = new Text({
@@ -200,6 +202,26 @@ sap.ui.define([
         _adjustGuid: function (sGuid) {
             return sGuid.replace('{', '%7B')  // Replace %7B with {
                 .replace('}', '%7D'); // Replace %7D with }
+        },
+
+        _onAddInfo(oEvent) {
+            // set Model for addInfo
+            const oBindingContexts = this.extensionAPI.getSelectedContexts();
+            const oObject = oBindingContexts[0].getObject();
+            const oView = this.getView();
+            const oData = {
+                article: {
+                    ArticleNo: oObject.ArticleNo
+                }
+            };
+            const oModel = new JSONModel(oData);
+            oView.setModel(oModel, "addInfo");
+
+            if (!this._addInfoDialog) {
+                // set dialog
+                this._addInfoDialog = new AddInfoDialog(oView);
+            }
+            this._addInfoDialog.open();
         }
     }
 });
