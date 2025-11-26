@@ -207,15 +207,25 @@ sap.ui.define([
         _onAddInfo(oEvent) {
             // set Model for addInfo
             const oBindingContexts = this.extensionAPI.getSelectedContexts();
-            const oObject = oBindingContexts[0].getObject();
+            const oBindingContext = oBindingContexts[0];
+            if (!oBindingContext) {
+                return;
+            }
             const oView = this.getView();
-            const oData = {
-                article: {
-                    ArticleNo: oObject.ArticleNo
-                }
-            };
-            const oModel = new JSONModel(oData);
-            oView.setModel(oModel, "addInfo");
+            
+            //const oObject = oBindingContext.getObject();            
+            //const oData = {
+            //    article: {
+            //        ArticleNo: oObject.ArticleNo
+            //    }
+            //};
+            //const oModel = new JSONModel(oData);
+            //oView.setModel(oModel, "addInfo");
+            
+            const sPath = oBindingContext.getPath().substr(1);
+            oView.bindElement({
+                path: "/" + window.decodeURIComponent(oBindingContext.getPath().substr(1))
+            });
 
             if (!this._addInfoDialog) {
                 // set dialog

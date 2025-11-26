@@ -3,7 +3,7 @@
     xmlns:core="sap.ui.core">
     <Dialog
         id="addInfoDialog"
-        title="Hello {addInfo>/article/ArticleNo}">
+        title="Hello {ArticleNo}">
         <content>
             <core:Icon
                 src="sap-icon://hello-world"
