@@ -226,6 +226,7 @@ sap.ui.define([
             oView.bindElement({
                 path: "/" + window.decodeURIComponent(oBindingContext.getPath().substr(1))
             });
+            //const oObject = oView.getBindingContext().getObject();
 
             if (!this._addInfoDialog) {
                 // set dialog
