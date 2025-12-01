@@ -1,5 +1,6 @@
 sap.ui.define([
     "sap/m/MessageToast",
+    "sap/m/MessageBox",
     "sap/m/Input",
     "sap/m/Select",
     "sap/ui/core/Item",
@@ -8,7 +9,7 @@ sap.ui.define([
     "sap/ui/core/ListItem",
     "../../controller/AddInfoDialog",
     "sap/ui/model/json/JSONModel"
-], function (MessageToast, Input, Select, Item, Text, ColumnListItem, ListItem, AddInfoDialog, JSONModel) {
+], function (MessageToast, MessageBox, Input, Select, Item, Text, ColumnListItem, ListItem, AddInfoDialog, JSONModel) {
     'use strict';
 
     return {
@@ -176,15 +177,16 @@ sap.ui.define([
             //disable busy            
             this.getView().setBusy(false);
 
-            /* let sErrorMessage = this.getBapiErrors(oData._batchResponses[0].__changeResponses);
+            let sErrorMessage = this._getBapiErrors(oData);
             if (sErrorMessage.length > 0) {
                 MessageBox.error(sErrorMessage);
             } else {
                 //notify about success
                 var message = this.getView().getModel("i18n").getResourceBundle().getText("dataSaved");
                 MessageToast.show(message);
-            } */
-            this._rebindTable(this.oTemplateColumnListItem);
+
+                this._rebindTable(this.oTemplateColumnListItem);
+            }
         },
 
         _oDataErrorHandle: function (oError) {
@@ -212,7 +214,7 @@ sap.ui.define([
                 return;
             }
             const oView = this.getView();
-            
+
             //const oObject = oBindingContext.getObject();            
             //const oData = {
             //    article: {
@@ -221,7 +223,7 @@ sap.ui.define([
             //};
             //const oModel = new JSONModel(oData);
             //oView.setModel(oModel, "addInfo");
-            
+
             const sPath = oBindingContext.getPath().substr(1);
             oView.bindElement({
                 path: "/" + window.decodeURIComponent(oBindingContext.getPath().substr(1))
@@ -233,6 +235,23 @@ sap.ui.define([
                 this._addInfoDialog = new AddInfoDialog(oView);
             }
             this._addInfoDialog.open();
+        },
+
+        _getBapiErrors: function (oData) {
+            let sErrorMessage = '';
+            oData.__batchResponses.forEach(oBatchResponse => {
+                if (oBatchResponse.response.body) {
+                    let oBody = JSON.parse(oBatchResponse.response.body);
+                    if (oBody.error) {
+                        if (sErrorMessage) {
+                            sErrorMessage = sErrorMessage + "\n" + oBody.error.message.value;
+                        } else {
+                            sErrorMessage = oBody.error.message.value;
+                        }
+                    }
+                }
+            });
+            return sErrorMessage;
         }
     }
 });
