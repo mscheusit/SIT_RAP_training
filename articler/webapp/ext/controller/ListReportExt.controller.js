@@ -1,6 +1,7 @@
 sap.ui.define([
     "sap/m/MessageToast",
     "sap/m/MessageBox",
+    "sap/ui/core/Messaging",
     "sap/m/Input",
     "sap/m/Select",
     "sap/ui/core/Item",
@@ -9,7 +10,7 @@ sap.ui.define([
     "sap/ui/core/ListItem",
     "../../controller/AddInfoDialog",
     "sap/ui/model/json/JSONModel"
-], function (MessageToast, MessageBox, Input, Select, Item, Text, ColumnListItem, ListItem, AddInfoDialog, JSONModel) {
+], function (MessageToast, MessageBox, Messaging, Input, Select, Item, Text, ColumnListItem, ListItem, AddInfoDialog, JSONModel) {
     'use strict';
 
     return {
@@ -83,7 +84,8 @@ sap.ui.define([
                     oModel.setProperty(sPath + "/Editable", false);
                 }); */
 
-                oModel.resetChanges();
+                oModel.resetChanges();     
+                Messaging.removeAllMessages();           
                 this._rebindTable(this.oTemplateColumnListItem);
             }
 
@@ -118,10 +120,11 @@ sap.ui.define([
                 return;
             }
 
+            this.getView().setBusy(true);
             oModel.submitChanges({
                 success: function (oData) {
                     if (oData.__batchResponses) {
-                        this._saveCompleted(oData)
+                        this._saveCompleted(oData).bind(this);
                     }
                 }.bind(this),
                 error: function (oError) {
@@ -147,7 +150,7 @@ sap.ui.define([
             }
             oModel = this.getView().getModel();
 
-            this.getView().setBusy(true)
+            this.getView().setBusy(true);
             oModel.setDeferredGroups(["id1"]);
 
             for (var i = 0; i < aData.length; i++) {
@@ -182,9 +185,10 @@ sap.ui.define([
                 MessageBox.error(sErrorMessage);
             } else {
                 //notify about success
-                var message = this.getView().getModel("i18n").getResourceBundle().getText("dataSaved");
-                MessageToast.show(message);
-
+                var sMessage = this.getView().getModel("i18n").getResourceBundle().getText("dataSaved");
+                MessageToast.show(sMessage);
+                
+                Messaging.removeAllMessages();
                 this._rebindTable(this.oTemplateColumnListItem);
             }
         },
@@ -196,8 +200,9 @@ sap.ui.define([
             //var oBindingParams = oEvent.getParameter("bindingParams");
             //oBindingParams.parameters = oBindingParams.parameters || {};
 
-            if (this.oEditTemplateColumnListItem = this.oActualTemplate) {
+            if (this.oEditTemplateColumnListItem = this.oActualTemplate) {                
                 this.getView().getModel().resetChanges();
+                Messaging.removeAllMessages();
             }
         },
 
@@ -240,7 +245,7 @@ sap.ui.define([
         _getBapiErrors: function (oData) {
             let sErrorMessage = '';
             oData.__batchResponses.forEach(oBatchResponse => {
-                if (oBatchResponse.response.body) {
+                if (oBatchResponse.response && oBatchResponse.response.body) {
                     let oBody = JSON.parse(oBatchResponse.response.body);
                     if (oBody.error) {
                         if (sErrorMessage) {
