@@ -135,6 +135,25 @@ CLASS lhc_Article IMPLEMENTATION.
 
     CHECK zcl_mm_i_article=>gv_eml_bo_bl_enabled = abap_true.
 
+    READ ENTITIES OF ZSITC_I_MM_Article IN LOCAL MODE
+      ENTITY Article
+         FIELDS ( ArticleID ArticleType ArticleNo )
+         WITH CORRESPONDING #( keys )
+       RESULT DATA(lt_articles).
+    LOOP AT lt_articles ASSIGNING FIELD-SYMBOL(<ls_article>).
+      TRY.
+          zcl_mm_i_article=>check_article_no(  VALUE #( ArticleID = <ls_article>-ArticleID
+                                                        ArticleType = <ls_article>-ArticleType
+                                                        ArticleNo = <ls_article>-ArticleNo )  ).
+        CATCH zcx_ca_exception_symsg INTO DATA(lo_error).
+          failed-article = VALUE #( BASE failed-article ( %tky = <ls_article>-%tky ) ).
+          reported-article = VALUE #(  BASE reported-article ( %tky = <ls_article>-%tky
+                                                               %msg = new_message_with_text( severity = if_abap_behv_message=>severity-error
+                                                                                             text     = lo_error->get_text( ) )
+                                                               %element-ArticleNo = if_abap_behv=>mk-on ) ).
+      ENDTRY.
+    ENDLOOP.
+
   ENDMETHOD.
 
   METHOD get_instance_features.
