@@ -84,12 +84,12 @@ sap.ui.define([
                     oModel.setProperty(sPath + "/Editable", false);
                 }); */
 
-                oModel.resetChanges();     
-                Messaging.removeAllMessages();           
+                oModel.resetChanges();
+                Messaging.removeAllMessages();
                 this._rebindTable(this.oTemplateColumnListItem);
             }
 
-            MessageToast.show("Custom handler invoked.");
+            //MessageToast.show("Custom handler invoked.");
         },
 
         _rebindTable: function (oTemplate) {
@@ -124,12 +124,12 @@ sap.ui.define([
             oModel.submitChanges({
                 success: function (oData) {
                     if (oData.__batchResponses) {
-                        this._saveCompleted(oData).bind(this);
+                        this._saveCompleted(oData);
                     }
                 }.bind(this),
                 error: function (oError) {
-                    this._oDataErrorHandle(oError).bind(this);
-                }
+                    this._oDataErrorHandle(oError);
+                }.bind(this)
             });
 
             /*  const aItems = this.oTable.getItems();
@@ -171,8 +171,8 @@ sap.ui.define([
                     }
                 }.bind(this),
                 error: function (oError) {
-                    this._oDataErrorHandle(oError).bind(this);
-                }
+                    this._oDataErrorHandle(oError);
+                }.bind(this)
             });
         },
 
@@ -187,7 +187,7 @@ sap.ui.define([
                 //notify about success
                 var sMessage = this.getView().getModel("i18n").getResourceBundle().getText("dataSaved");
                 MessageToast.show(sMessage);
-                
+
                 Messaging.removeAllMessages();
                 this._rebindTable(this.oTemplateColumnListItem);
             }
@@ -200,7 +200,7 @@ sap.ui.define([
             //var oBindingParams = oEvent.getParameter("bindingParams");
             //oBindingParams.parameters = oBindingParams.parameters || {};
 
-            if (this.oEditTemplateColumnListItem = this.oActualTemplate) {                
+            if (this.oEditTemplateColumnListItem = this.oActualTemplate) {
                 this.getView().getModel().resetChanges();
                 Messaging.removeAllMessages();
             }
