@@ -20,7 +20,7 @@ sap.ui.define([
 
         _onEdit: function (oEvent) {
             var oModel = this.getView().getModel();
-            if (this.oActualTemplate == null || this.oActualTemplate == this.oTemplateColumnListItem) {
+            if (this.oActualTemplate == null || this.oActualTemplate === this.oTemplateColumnListItem) {
                 // Get selected contexts. The method can be called directly on extensionAPI
                 /*const aSelectedContexts = this.extensionAPI.getSelectedContexts();
                 // Loop through the selected items and process their data
@@ -200,7 +200,7 @@ sap.ui.define([
             //var oBindingParams = oEvent.getParameter("bindingParams");
             //oBindingParams.parameters = oBindingParams.parameters || {};
 
-            if (this.oEditTemplateColumnListItem = this.oActualTemplate) {
+            if (this.oEditTemplateColumnListItem === this.oActualTemplate) {
                 this.getView().getModel().resetChanges();
                 Messaging.removeAllMessages();
             }
