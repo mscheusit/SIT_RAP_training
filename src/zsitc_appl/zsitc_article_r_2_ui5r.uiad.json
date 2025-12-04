@@ -7,29 +7,19 @@
   },
   "generalInformation": {
     "appType": "ui5",
-    "catalogId": "SAP_TC_UI5_REPO_UIAD",
-    "targetMappingTitle": "Article"
+    "catalogId": "SAP_TC_ALV5_DEFAULT",
+    "targetMappingTitle": "Article Release"
   },
   "ui5AppDetails": {
     "appId": "zsitc.articler"
   },
   "navigation": {
-    "targetMappingId": "UI5R_10811D2CF6ED0F706D1CB639B833C361C29AAA81_TM",
-    "semanticObject": "ZSITC_ARTICLER",
+    "targetMappingId": "ZSITC_ARTICLE_R_2_UI5R_TM",
+    "semanticObject": "ZSITC_ARTICLE",
     "action": "manage",
     "desktop": true,
     "tablet": true,
     "phone": true
   },
-  "tiles": [
-    {
-      "id": "UI5R_10811D2CF6ED0F706D1CB639B833C361C29AAA81_AL",
-      "tileType": "static",
-      "isDefault": true,
-      "standard": {
-        "title": "Article",
-        "subtitle": "Article (Release)"
-      }
-    }
-  ]
+  "tiles": []
 }
