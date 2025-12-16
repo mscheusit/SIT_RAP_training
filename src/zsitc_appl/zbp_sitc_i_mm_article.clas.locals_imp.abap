@@ -1,3 +1,39 @@
+CLASS lhc_articlesupplier DEFINITION INHERITING FROM cl_abap_behavior_handler.
+
+  PRIVATE SECTION.
+
+    METHODS get_instance_features FOR INSTANCE FEATURES
+      IMPORTING keys REQUEST requested_features FOR ArticleSupplier RESULT result.
+
+ENDCLASS.
+
+CLASS lhc_articlesupplier IMPLEMENTATION.
+
+  METHOD get_instance_features.
+
+    READ ENTITIES OF ZSITC_I_MM_Article IN LOCAL MODE
+       ENTITY Article
+          FIELDS ( ArticleID Released )
+          WITH CORRESPONDING #( keys )
+        RESULT DATA(lt_article)
+       ENTITY Article BY \_Supplier
+       FIELDS ( ArticleID )
+          WITH CORRESPONDING #( keys )
+        RESULT DATA(lt_article_supplier)
+        FAILED failed.
+
+    LOOP AT lt_article ASSIGNING FIELD-SYMBOL(<ls_article>).
+      DATA(lv_is_upd_able) = zcl_mm_i_article=>is_update_able( CORRESPONDING #( <ls_article> ) ).
+      result = VALUE #( FOR <ls_article_text> IN lt_article_supplier USING KEY entity WHERE ( ArticleID = <ls_article>-ArticleID )
+       ( %tky = <ls_article_text>-%tky
+         %features-%update = COND #( WHEN lv_is_upd_able = abap_true THEN if_abap_behv=>fc-o-enabled ELSE if_abap_behv=>fc-o-disabled )
+         %features-%delete = COND #( WHEN lv_is_upd_able = abap_true THEN if_abap_behv=>fc-o-enabled ELSE if_abap_behv=>fc-o-disabled ) ) ).
+    ENDLOOP.
+
+  ENDMETHOD.
+
+ENDCLASS.
+
 CLASS lhc_articletext DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
   PRIVATE SECTION.
@@ -29,6 +65,7 @@ CLASS lhc_articletext IMPLEMENTATION.
          %features-%update = COND #( WHEN lv_is_upd_able = abap_true THEN if_abap_behv=>fc-o-enabled ELSE if_abap_behv=>fc-o-disabled )
          %features-%delete = COND #( WHEN lv_is_upd_able = abap_true THEN if_abap_behv=>fc-o-enabled ELSE if_abap_behv=>fc-o-disabled ) ) ).
     ENDLOOP.
+
   ENDMETHOD.
 
 ENDCLASS.

@@ -5,8 +5,9 @@
 /*+[hideWarning] { "IDS" : [ "CARDINALITY_CHECK" ]  } */
 define root view entity ZSITC_I_MM_Article
   as select from zsitc_mm_article
-  composition [0..*] of ZSITC_I_MM_Article_Text    as _Text
-  association [1..1] to ZSITC_I_MM_ARTICLE_TYPE_VH as _Type on $projection.ArticleType = _Type.Value
+  composition [0..*] of ZSITC_I_MM_Article_Text     as _Text
+  composition [0..*] of ZSITC_I_MM_Article_Supplier as _Supplier
+  association [1..1] to ZSITC_I_MM_ARTICLE_TYPE_VH  as _Type on $projection.ArticleType = _Type.Value
 {
 
   key artid           as ArticleID,
@@ -38,5 +39,6 @@ define root view entity ZSITC_I_MM_Article
 
       /* Associations */
       _Text,
+      _Supplier,
       _Type
 }

@@ -13,9 +13,19 @@ use etag
   use action release;
 
   use association _Text { create; }
+  use association _Supplier { create; }
 }
 
 define behavior for ZSITC_C_MM_Article_Text alias ArticleText
+use etag
+{
+  use update;
+  use delete;
+
+  use association _Article;
+}
+
+define behavior for ZSITC_C_MM_Article_Supplier alias ArticleSupplier
 use etag
 {
   use update;

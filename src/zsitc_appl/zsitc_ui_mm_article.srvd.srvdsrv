@@ -1,5 +1,6 @@
 @EndUserText.label: 'Article'
 define service ZSITC_UI_MM_Article {
-  expose ZSITC_C_MM_Article      as Article;
-  expose ZSITC_C_MM_Article_Text as ArticleText;
+  expose ZSITC_C_MM_Article          as Article;
+  expose ZSITC_C_MM_Article_Text     as ArticleText;
+  expose ZSITC_C_MM_Article_Supplier as ArticleSupplier;
 }

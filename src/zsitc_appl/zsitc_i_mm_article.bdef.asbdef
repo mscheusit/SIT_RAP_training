@@ -19,6 +19,7 @@ authorization master ( instance )
   //field (features : instance ) ArticleNo, ArticleType, RegularVendor ;
 
   association _Text { create ( features : instance ); }
+  association _Supplier { create ( features : instance ); }
 
   validation validateArticleNo on save { field ArticleNo; }
 
@@ -69,6 +70,32 @@ authorization dependent by _Article
       ArticleID     = artid;
       Language      = spras;
       Description   = bezei;
+      LastChangedBy = last_changed_by;
+      LastChangedAt = last_changed_at;
+    }
+}
+
+define behavior for ZSITC_I_MM_Article_Supplier alias ArticleSupplier
+persistent table zsitc_mm_articll
+etag master LastChangedAt
+lock dependent by _Article
+early numbering
+authorization dependent by _Article
+{
+  update ( features : instance );
+  delete ( features : instance );
+
+  // static field control
+  field ( readonly ) ArticleID, LastChangedBy, LastChangedAt;
+
+  field ( mandatory : create, readonly : update ) Supplier;
+
+  association _Article;
+
+  mapping for zsitc_mm_articll
+    {
+      ArticleID     = artid;
+      Supplier      = lifnr;
       LastChangedBy = last_changed_by;
       LastChangedAt = last_changed_at;
     }

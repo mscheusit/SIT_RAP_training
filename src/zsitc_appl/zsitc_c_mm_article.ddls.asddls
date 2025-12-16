@@ -105,9 +105,10 @@ define root view entity ZSITC_C_MM_Article
                  identification: [ { position: 90 } ] }
           LastChangedAt,
 
-  //virtual Editable : abap_boolean,
+          //virtual Editable : abap_boolean,
 
           /* Associations */
-          _Text : redirected to composition child ZSITC_C_MM_Article_Text,
+          _Text     : redirected to composition child ZSITC_C_MM_Article_Text,
+          _Supplier : redirected to composition child ZSITC_C_MM_Article_Supplier,
           _Type
 }
