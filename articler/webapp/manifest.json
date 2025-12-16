@@ -106,9 +106,28 @@
       "css": []
     },
     "routing": {
-      "config": {},
-      "routes": [],
-      "targets": {}
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": "supplierlist",
+          "name": "RouteSupplierList",
+          "target": [
+            "SupplierList"
+          ]
+        }
+      ],
+      "targets": {
+        "SupplierList": {
+          "viewId": "SupplierList",
+          "viewName": "SupplierList"
+        }
+      }
     },
     "extends": {
       "extensions": {

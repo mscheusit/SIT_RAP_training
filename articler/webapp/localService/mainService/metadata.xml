@@ -49,6 +49,7 @@
                 <Property Name="release_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Delete_mc" Type="Edm.Boolean" sap:label="Dyn. Method Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Update_mc" Type="Edm.Boolean" sap:label="Dyn. Method Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="to_Supplier_oc" Type="Edm.Boolean" sap:label="Dynamic CbA-Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="to_Text_oc" Type="Edm.Boolean" sap:label="Dynamic CbA-Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="ArticleID" Type="Edm.String" Nullable="false" MaxLength="22" sap:label="Article ID" sap:quickinfo="zmm_e_artid" sap:creatable="false" sap:updatable="false"/>
                 <Property Name="ArticleNo" Type="Edm.String" MaxLength="40" sap:label="Article No" sap:quickinfo="ZMM_E_ARTNAME"/>
@@ -61,7 +62,21 @@
                 <Property Name="CreatedAt" Type="Edm.DateTimeOffset" Precision="7" sap:label="Created On" sap:quickinfo="Creation Date Time" sap:creatable="false" sap:updatable="false"/>
                 <Property Name="LastChangedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed By" sap:quickinfo="Local Instance Last Changed By User" sap:creatable="false" sap:updatable="false"/>
                 <Property Name="LastChangedAt" Type="Edm.DateTimeOffset" Precision="7" sap:label="Changed On" sap:quickinfo="Local Instance Last Change Date Time" sap:creatable="false" sap:updatable="false"/>
+                <NavigationProperty Name="to_Supplier" Relationship="cds_zsitc_ui_mm_article.assoc_6698DE1A415FA95DCCD2301CAB45C883" FromRole="FromRole_assoc_6698DE1A415FA95DCCD2301CAB45C883" ToRole="ToRole_assoc_6698DE1A415FA95DCCD2301CAB45C883"/>
                 <NavigationProperty Name="to_Text" Relationship="cds_zsitc_ui_mm_article.assoc_DA32449E927234E4793ADDD49D1116A8" FromRole="FromRole_assoc_DA32449E927234E4793ADDD49D1116A8" ToRole="ToRole_assoc_DA32449E927234E4793ADDD49D1116A8"/>
+            </EntityType>
+            <EntityType Name="ArticleSupplierType" sap:label="Article Text" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ArticleID"/>
+                    <PropertyRef Name="Supplier"/>
+                </Key>
+                <Property Name="Delete_mc" Type="Edm.Boolean" sap:label="Dyn. Method Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Update_mc" Type="Edm.Boolean" sap:label="Dyn. Method Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ArticleID" Type="Edm.String" Nullable="false" MaxLength="22" sap:label="Article ID" sap:quickinfo="zmm_e_artid" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Supplier" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Vendor No" sap:quickinfo="ZMM_E_ARTNAME" sap:updatable="false"/>
+                <Property Name="LastChangedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed By" sap:quickinfo="Local Instance Last Changed By User" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="LastChangedAt" Type="Edm.DateTimeOffset" Precision="7" sap:label="Changed On" sap:quickinfo="Local Instance Last Change Date Time" sap:creatable="false" sap:updatable="false"/>
+                <NavigationProperty Name="to_Article" Relationship="cds_zsitc_ui_mm_article.assoc_6698DE1A415FA95DCCD2301CAB45C883" FromRole="ToRole_assoc_6698DE1A415FA95DCCD2301CAB45C883" ToRole="FromRole_assoc_6698DE1A415FA95DCCD2301CAB45C883"/>
             </EntityType>
             <EntityType Name="ArticleTextType" sap:label="Article Text" sap:content-version="1">
                 <Key>
@@ -248,6 +263,20 @@
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
+            <Association Name="assoc_6698DE1A415FA95DCCD2301CAB45C883" sap:content-version="1">
+                <End Type="cds_zsitc_ui_mm_article.ArticleType" Multiplicity="1" Role="FromRole_assoc_6698DE1A415FA95DCCD2301CAB45C883">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsitc_ui_mm_article.ArticleSupplierType" Multiplicity="*" Role="ToRole_assoc_6698DE1A415FA95DCCD2301CAB45C883"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_6698DE1A415FA95DCCD2301CAB45C883">
+                        <PropertyRef Name="ArticleID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_6698DE1A415FA95DCCD2301CAB45C883">
+                        <PropertyRef Name="ArticleID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
             <Association Name="to_format" sap:content-version="1">
                 <End Type="cds_zsitc_ui_mm_article.SAP__DocumentDescription" Multiplicity="1" Role="FromRole_to_format"/>
                 <End Type="cds_zsitc_ui_mm_article.SAP__Format" Multiplicity="1" Role="ToRole_to_format"/>
@@ -358,6 +387,7 @@
             </Association>
             <EntityContainer Name="cds_zsitc_ui_mm_article_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx pdf">
                 <EntitySet Name="Article" EntityType="cds_zsitc_ui_mm_article.ArticleType" sap:content-version="1" sap:deletable-path="Delete_mc" sap:updatable-path="Update_mc"/>
+                <EntitySet Name="ArticleSupplier" EntityType="cds_zsitc_ui_mm_article.ArticleSupplierType" sap:content-version="1" sap:deletable-path="Delete_mc" sap:updatable-path="Update_mc"/>
                 <EntitySet Name="ArticleText" EntityType="cds_zsitc_ui_mm_article.ArticleTextType" sap:content-version="1" sap:deletable-path="Delete_mc" sap:updatable-path="Update_mc"/>
                 <EntitySet Name="ZSITC_I_MM_ARTICLE_TYPE_VH" EntityType="cds_zsitc_ui_mm_article.ZSITC_I_MM_ARTICLE_TYPE_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
                 <EntitySet Name="SAP__FormatSet" EntityType="cds_zsitc_ui_mm_article.SAP__Format" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
@@ -373,6 +403,10 @@
                 <EntitySet Name="SAP__UnitsOfMeasure" EntityType="cds_zsitc_ui_mm_article.SAP__UnitOfMeasure" sap:content-version="1"/>
                 <EntitySet Name="SAP__MyDocumentDescriptions" EntityType="cds_zsitc_ui_mm_article.SAP__DocumentDescription" sap:content-version="1"/>
                 <EntitySet Name="SAP__FileShareSet" EntityType="cds_zsitc_ui_mm_article.SAP__FileShare" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_6698DE1A415FA95DCCD2301CAB45C883" Association="cds_zsitc_ui_mm_article.assoc_6698DE1A415FA95DCCD2301CAB45C883" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Article" Role="FromRole_assoc_6698DE1A415FA95DCCD2301CAB45C883"/>
+                    <End EntitySet="ArticleSupplier" Role="ToRole_assoc_6698DE1A415FA95DCCD2301CAB45C883"/>
+                </AssociationSet>
                 <AssociationSet Name="assoc_DA32449E927234E4793ADDD49D1116A8" Association="cds_zsitc_ui_mm_article.assoc_DA32449E927234E4793ADDD49D1116A8" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="Article" Role="FromRole_assoc_DA32449E927234E4793ADDD49D1116A8"/>
                     <End EntitySet="ArticleText" Role="ToRole_assoc_DA32449E927234E4793ADDD49D1116A8"/>
@@ -463,6 +497,9 @@
             <Annotations Target="cds_zsitc_ui_mm_article.cds_zsitc_ui_mm_article_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
             </Annotations>
+            <Annotations Target="cds_zsitc_ui_mm_article.ArticleType/to_Supplier" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Composition"/>
+            </Annotations>
             <Annotations Target="cds_zsitc_ui_mm_article.ArticleType/to_Text" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Common.Composition"/>
             </Annotations>
@@ -479,6 +516,7 @@
                                 <PropertyPath>release_ac</PropertyPath>
                                 <PropertyPath>Delete_mc</PropertyPath>
                                 <PropertyPath>Update_mc</PropertyPath>
+                                <PropertyPath>to_Supplier_oc</PropertyPath>
                                 <PropertyPath>to_Text_oc</PropertyPath>
                             </Collection>
                         </PropertyValue>
@@ -493,6 +531,14 @@
                     <Record>
                         <PropertyValue Property="RestrictedProperties">
                             <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Supplier"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Path="to_Supplier_oc"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
                                 <Record>
                                     <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Text"/>
                                     <PropertyValue Property="InsertRestrictions">
@@ -517,6 +563,7 @@
                                 <PropertyPath>release_ac</PropertyPath>
                                 <PropertyPath>Delete_mc</PropertyPath>
                                 <PropertyPath>Update_mc</PropertyPath>
+                                <PropertyPath>to_Supplier_oc</PropertyPath>
                                 <PropertyPath>to_Text_oc</PropertyPath>
                             </Collection>
                         </PropertyValue>
@@ -526,7 +573,75 @@
                     <Record>
                         <PropertyValue Property="NonUpdatableNavigationProperties">
                             <Collection>
+                                <PropertyPath>to_Supplier</PropertyPath>
                                 <PropertyPath>to_Text</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Updatable" Path="Update_mc"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsitc_ui_mm_article.cds_zsitc_ui_mm_article_Entities/ArticleSupplier" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Path="Delete_mc"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>Delete_mc</PropertyPath>
+                                <PropertyPath>Update_mc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="RequiredProperties">
+                            <Collection>
+                                <PropertyPath>Supplier</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Article"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection>
+                        <PropertyPath>LastChangedAt</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>Delete_mc</PropertyPath>
+                                <PropertyPath>Update_mc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonUpdatableNavigationProperties">
+                            <Collection>
+                                <PropertyPath>to_Article</PropertyPath>
                             </Collection>
                         </PropertyValue>
                         <PropertyValue Property="Updatable" Path="Update_mc"/>
@@ -673,11 +788,17 @@
                     </Record>
                 </Annotation>
             </Annotations>
+            <Annotations Target="cds_zsitc_ui_mm_article.ArticleSupplierType/LastChangedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=ABP_LOCINST_LASTCHANGE_TSTMPL&amp;origin=TRL_100"/>
+            </Annotations>
             <Annotations Target="cds_zsitc_ui_mm_article.ArticleTextType/Description" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=BEZEI&amp;origin=TRL_100"/>
             </Annotations>
             <Annotations Target="cds_zsitc_ui_mm_article.ArticleType/CreatedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=ABP_CREATION_TSTMPL&amp;origin=TRL_100"/>
+            </Annotations>
+            <Annotations Target="cds_zsitc_ui_mm_article.ArticleSupplierType/LastChangedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=ABP_LOCINST_LASTCHANGE_USER&amp;origin=TRL_100"/>
             </Annotations>
             <Annotations Target="cds_zsitc_ui_mm_article.ArticleType/LastChangedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=ABP_LOCINST_LASTCHANGE_TSTMPL&amp;origin=TRL_100"/>
