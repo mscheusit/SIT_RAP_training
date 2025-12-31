@@ -9,9 +9,10 @@ sap.ui.define([
     "sap/m/ColumnListItem",
     "sap/ui/core/ListItem",
     "../../controller/AddInfoDialog",
+    "../../controller/SupplierList",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/UIComponent"
-], function (MessageToast, MessageBox, Messaging, Input, Select, Item, Text, ColumnListItem, ListItem, AddInfoDialog, JSONModel, UIComponent) {
+], function (MessageToast, MessageBox, Messaging, Input, Select, Item, Text, ColumnListItem, ListItem, AddInfoDialog, SupplierList, JSONModel, UIComponent) {
     'use strict';
 
     return {
@@ -266,7 +267,7 @@ sap.ui.define([
             
             // Trigger navigation using the 'name' defined in the manifest.json routes
             // In this case, we navigate to the route named "RouteSupplierList"
-            oRouter.navTo("RouteSupplierList");
+            oRouter.navTo("RouteSupplierList", {ArticleID: "12315"});
         }
     }
 });

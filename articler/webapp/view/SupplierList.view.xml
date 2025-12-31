@@ -2,19 +2,8 @@
 controllerName="zsitc.articler.controller.SupplierList"
 xmlns="sap.m"
 xmlns:mvc="sap.ui.core.mvc">
-    <Panel accessibleRole="Region">
-    <headerToolbar>
-        <Toolbar>
-            <Title text="{i18n>invoiceListTitle}"/>
-            <ToolbarSpacer/>
-            <SearchField
-                width="50%"
-                search=".onFilterInvoices"
-                ariaLabelledBy="searchFieldLabel"
-                ariaDescribedBy="searchFieldDescription"
-                placeholder="{i18n>searchFieldPlaceHolder}"/>
-        </Toolbar>
-    </headerToolbar>
+<Page id="_IDGenPage">
+    <Panel id="_IDGenPanel" accessibleRole="Region">    
     <Table
         id="invoiceList"
         class="saUiResponsiveMargin"
@@ -27,21 +16,22 @@ xmlns:mvc="sap.ui.core.mvc">
                 }
             }">
         <columns>
-            <Column 
+            <Column id="_IDGenColumn" 
                 minScreenWidth="Tablet"
                 demandPopin="false">
-                <Text text="{i18n>columnSupplier}"/>
+                <Text id="_IDGenText" text="{i18n>columnSupplier}"/>
             </Column>
         </columns>
         <items>
-            <ColumnListItem
+            <ColumnListItem id="_IDGenColumnListItem"
                 type="Navigation"
                 press=".onPress">
                 <cells>
-                    <Text text="{Supplier}"/>
+                    <Text id="_IDGenText1" text="{Supplier}"/>
                 </cells>
             </ColumnListItem>
         </items>
     </Table>
     </Panel>
+    </Page>
 </mvc:View>

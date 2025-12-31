@@ -115,16 +115,14 @@
       },
       "routes": [
         {
-          "pattern": "supplierlist",
+          "pattern": "supplierlist/{ArticleID}",
           "name": "RouteSupplierList",
-          "target": [
-            "SupplierList"
-          ]
+          "target": "supplierlist"
         }
       ],
       "targets": {
-        "SupplierList": {
-          "viewId": "SupplierList",
+        "supplierlist": {          
+          "viewId": "supplierlist",
           "viewName": "SupplierList"
         }
       }
@@ -152,6 +150,12 @@
                     "id": "onAddInfoButton",
                     "text": "Additional Info",
                     "press": "_onAddInfo",
+                    "requiresSelection": true
+                  },
+                  "onNavigateToSupplieList": {
+                    "id": "onNavigateToSupplieList",
+                    "text": "Supplier List",
+                    "press": "_onNavigateToSupplieList",
                     "requiresSelection": true
                   }
                 }
