@@ -27,9 +27,9 @@ authorization master ( instance )
 
   side effects
   {
-    // Wenn das Feld 'BookingFee' geändert wird (Trigger),
+    // if field ArticleNo is changed (Trigger),
     field ArticleNo
-    // betrifft dies das Feld 'TotalPrice' (Ziel).
+    // target field.
     affects field LastChangedAt;
   }
 
