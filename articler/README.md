@@ -1,19 +1,18 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Mon Nov 24 2025 10:26:55 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Mon Jan 19 2026 13:22:31 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
-|**App Generator Version**<br>1.19.5|
+|**App Generator Version**<br>1.20.1|
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>List Report Page V2|
 |**Service Type**<br>SAP System (ABAP Cloud)|
-|**Service URL**<br>https://94112c48-db0e-4021-b981-77ca818c73cb.abap.ap21.hana.ondemand.com/sap/opu/odata/sap/ZSITC_MM_ARTICLE_O2|
+|**Service URL**<br>https://302ba387-5fca-4464-ab22-8b974aaf9399.abap.ap21.hana.ondemand.com/sap/opu/odata/sap/ZSITC_MM_ARTICLE_O2|
 |**Module Name**<br>articler|
-|**Application Title**<br>Article Release|
+|**Application Title**<br>Article - Release|
 |**Namespace**<br>zsitc|
 |**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.139.3|
-|**Enable Code Assist Libraries**<br>False|
+|**UI5 Version**<br>1.139.4|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
 |**Main Entity**<br>Article|
@@ -21,7 +20,7 @@
 
 ## articler
 
-An SAP Fiori application.
+Article Release
 
 ### Starting the generated app
 

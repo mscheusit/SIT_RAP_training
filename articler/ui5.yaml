@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
 
-specVersion: "3.1"
+specVersion: "4.0"
 metadata:
   name: zsitc.articler
 type: application
@@ -18,8 +18,8 @@ server:
         backend:
           - authenticationType: reentranceTicket # SAML support for vscode
             path: /sap
-            url: https://94112c48-db0e-4021-b981-77ca818c73cb.abap.ap21.hana.ondemand.com
-            destination: abap-cloud-abap_environment-41e6a72dtrial-dev
+            url: https://302ba387-5fca-4464-ab22-8b974aaf9399.abap.ap21.hana.ondemand.com
+            destination: abap-cloud-abap_environment-2f5ca337trial-dev
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
