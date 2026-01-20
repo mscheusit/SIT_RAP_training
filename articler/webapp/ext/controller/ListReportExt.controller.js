@@ -9,10 +9,9 @@ sap.ui.define([
     "sap/m/ColumnListItem",
     "sap/ui/core/ListItem",
     "../../controller/AddInfoDialog",
-    "../../controller/SupplierList",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/UIComponent"
-], function (MessageToast, MessageBox, Messaging, Input, Select, Item, Text, ColumnListItem, ListItem, AddInfoDialog, SupplierList, JSONModel, UIComponent) {
+], function (MessageToast, MessageBox, Messaging, Input, Select, Item, Text, ColumnListItem, ListItem, AddInfoDialog, JSONModel, UIComponent) {
     'use strict';
 
     return {
@@ -262,12 +261,13 @@ sap.ui.define([
         },
 
         _onNavigateToSupplieList: function () {
-            // Get the router instance
-            var oRouter = UIComponent.getRouterFor(this);
-            
-            // Trigger navigation using the 'name' defined in the manifest.json routes
-            // In this case, we navigate to the route named "RouteSupplierList"
-            oRouter.navTo("RouteSupplierList", {ArticleID: "12315"});
+            const oContext = this.extensionAPI.getSelectedContexts()[0];
+            const oData = oContext.getObject();
+
+            const oNavigationController = this.extensionAPI.getNavigationController();
+            oNavigationController.navigateInternal("RouteSupplierList", {
+                context: oContext
+            });
         }
     }
 });

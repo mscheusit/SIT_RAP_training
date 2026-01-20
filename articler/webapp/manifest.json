@@ -112,19 +112,6 @@
         "controlId": "app",
         "controlAggregation": "pages",
         "async": true
-      },
-      "routes": [
-        {
-          "pattern": "supplierlist/{ArticleID}",
-          "name": "RouteSupplierList",
-          "target": "supplierlist"
-        }
-      ],
-      "targets": {
-        "supplierlist": {          
-          "viewId": "supplierlist",
-          "viewName": "SupplierList"
-        }
       }
     },
     "extends": {
@@ -211,6 +198,21 @@
                   "name": "sap.suite.ui.generic.template.ObjectPage"
                 }
               }
+            }
+          },
+          "SupplierList": {
+            "component": {
+              "name": "sap.suite.ui.generic.template.Canvas",
+              "settings": { }
+            },
+            "implementingComponent": {
+              "componentName": "zsitc.articler.SupplierList",
+              "settings": { }
+            },
+            "routingSpec": {
+              "noOData": true,
+              "noKey": false,
+              "routeName": "RouteSupplierList"
             }
           }
         }
