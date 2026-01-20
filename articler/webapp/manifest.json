@@ -1,5 +1,5 @@
 {
-  "_version": "1.60.0",
+  "_version": "1.77.0",
   "sap.app": {
     "id": "zsitc.articler",
     "type": "application",
@@ -12,8 +12,8 @@
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
-      "version": "1.19.3",
-      "toolsId": "55f7c8bb-b33b-457f-a636-5dbba08608f6"
+      "version": "1.20.1",
+      "toolsId": "9ef6b2b4-0e64-40a2-945d-d33ddfdb8dbd"
     },
     "dataSources": {
       "ZSITC_MM_ARTICLE_O2_VAN": {
@@ -63,7 +63,7 @@
   "sap.ui5": {
     "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.120.38",
+      "minUI5Version": "1.139.4",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
@@ -203,11 +203,11 @@
           "SupplierList": {
             "component": {
               "name": "sap.suite.ui.generic.template.Canvas",
-              "settings": { }
+              "settings": {}
             },
             "implementingComponent": {
               "componentName": "zsitc.articler.SupplierList",
-              "settings": { }
+              "settings": {}
             },
             "routingSpec": {
               "noOData": true,

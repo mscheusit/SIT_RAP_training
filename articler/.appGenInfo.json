@@ -1,13 +1,13 @@
 {
   "generationParameters": {
-    "generationDate": "Mon Jan 19 2026 13:22:31 GMT+0000 (Coordinated Universal Time)",
+    "generationDate": "Tue Jan 20 2026 12:31:30 GMT+0000 (Coordinated Universal Time)",
     "generatorPlatform": "SAP Business Application Studio",
     "serviceType": "SAP System (ABAP Cloud)",
     "metadataFilename": "",
     "serviceUrl": "https://302ba387-5fca-4464-ab22-8b974aaf9399.abap.ap21.hana.ondemand.com/sap/opu/odata/sap/ZSITC_MM_ARTICLE_O2",
     "appName": "articler",
     "appTitle": "Article - Release",
-    "appDescription": "Article Release",
+    "appDescription": "Article - Release",
     "appNamespace": "zsitc",
     "ui5Theme": "sap_horizon",
     "ui5Version": "1.139.4",
