@@ -265,9 +265,10 @@ sap.ui.define([
             const oData = oContext.getObject();
 
             const oNavigationController = this.extensionAPI.getNavigationController();
-            oNavigationController.navigateInternal("RouteSupplierList", {
-                context: oContext
+            oNavigationController.navigateInternal('ArticleID=' + oData.ArticleID, {
+                routeName: "RouteSupplierList",
+                isAbsolute: true
             });
         }
     }
-});
+})
