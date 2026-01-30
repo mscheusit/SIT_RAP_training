@@ -1,0 +1,25 @@
+{
+  "_version": "1.77.0",
+  "sap.app": {
+    "id": "zsitc.articler.SupplierList",
+    "type": "component"
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "zsitc.articler.SupplierList.view.SupplierList",
+      "type": "XML",
+      "async": true,
+      "id": "SupplierListView",
+      "lazy": true
+    },
+    "dependencies": {
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.suite.ui.generic.template": {}
+      }
+    }
+  }
+}

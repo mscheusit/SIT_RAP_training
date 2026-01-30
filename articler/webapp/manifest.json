@@ -61,6 +61,9 @@
     }
   },
   "sap.ui5": {
+    "resourceRoots": {
+      "zsitc.articler.SupplierList": "./SupplierList"
+    },
     "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.139.4",
@@ -78,6 +81,13 @@
       "compact": true,
       "cozy": true
     },
+    "componentUsages": {
+      "SupplierList": {
+        "name": "zsitc.articler.SupplierList",
+        "settings": {},
+        "componentData": {}
+      }
+    },
     "models": {
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
@@ -87,7 +97,7 @@
       },
       "": {
         "dataSource": "mainService",
-        "preload": true,
+        "preload": false,
         "settings": {
           "defaultBindingMode": "TwoWay",
           "defaultCountMode": "Inline",
@@ -206,8 +216,7 @@
               "settings": {}
             },
             "implementingComponent": {
-              "componentName": "zsitc.articler.SupplierList",
-              "settings": {}
+              "componentUsage": "SupplierList"
             },
             "routingSpec": {
               "noOData": true,
