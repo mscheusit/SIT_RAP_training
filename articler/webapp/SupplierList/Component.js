@@ -29,15 +29,15 @@ sap.ui.define(["sap/ui/core/UIComponent", "sap/suite/ui/generic/template/extensi
         },
 
         _handleContext: function (oExtensionAPI) {
-            var oComponentModel = this.getComponentModel();
-            var sPath = oExtensionAPI.getNavigationController().getCurrentKeys()[1];
-            var sBindingPath = "/Article(" + sPath + ")";
-            var oPathSpec = {
+            const oComponentModel = this.getComponentModel();
+            const sPath = oExtensionAPI.getNavigationController().getCurrentKeys()[1];
+            const sBindingPath = "/Article(" + sPath + ")";
+            const oPathSpec = {
                 path: sBindingPath
             };
 
-            var oCanvasView = oComponentModel.getProperty("/View");
-            oCanvasView.bindElement(oPathSpec);
+            const oSupplierListView = oComponentModel.getProperty("/View");
+            oSupplierListView.bindElement(oPathSpec);
         }
     });
 });

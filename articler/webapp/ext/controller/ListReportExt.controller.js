@@ -261,7 +261,7 @@ sap.ui.define([
         },
 
         _onNavigateToSupplierList: function (oEvent) {
-            var oContext = this.extensionAPI.getSelectedContexts()[0];
+            const oContext = this.extensionAPI.getSelectedContexts()[0];
             const oData = oContext.getObject();
 
             const oNavigationController = this.extensionAPI.getNavigationController();
