@@ -260,14 +260,13 @@ sap.ui.define([
             return sErrorMessage;
         },
 
-        _onNavigateToSupplieList: function () {
-            const oContext = this.extensionAPI.getSelectedContexts()[0];
+        _onNavigateToSupplierList: function (oEvent) {
+            var oContext = this.extensionAPI.getSelectedContexts()[0];
             const oData = oContext.getObject();
 
             const oNavigationController = this.extensionAPI.getNavigationController();
-            oNavigationController.navigateInternal('ArticleID=' + oData.ArticleID, {
-                routeName: "RouteSupplierList",
-                isAbsolute: true
+            oNavigationController.navigateInternal("'" + this._adjustGuid(oData.ArticleID + "'"), {
+                routeName: "RouteSupplierList"
             });
         }
     }

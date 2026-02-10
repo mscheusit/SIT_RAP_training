@@ -19,6 +19,11 @@
         "sap.ui.comp": {},
         "sap.ui.generic.app": {},
         "sap.suite.ui.generic.template": {}
+      },
+      "models": {
+        "reuseModel": {
+          "type": "sap.ui.model.json.JSONModel"
+        }
       }
     }
   }

@@ -149,10 +149,10 @@
                     "press": "_onAddInfo",
                     "requiresSelection": true
                   },
-                  "onNavigateToSupplieList": {
-                    "id": "onNavigateToSupplieList",
+                  "onNavigateToSupplierList": {
+                    "id": "onNavigateToSupplierList",
                     "text": "Supplier List",
-                    "press": "_onNavigateToSupplieList",
+                    "press": "_onNavigateToSupplierList",
                     "requiresSelection": true
                   }
                 }

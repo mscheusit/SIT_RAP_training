@@ -6,33 +6,38 @@ sap.ui.define(["sap/ui/core/UIComponent", "sap/suite/ui/generic/template/extensi
         },
 
         // Standard life time event of a component. Used to transform this component into a reuse component for Fiori Elements
-  init: function(){
-    //Transform this component into a reuse component for Fiori Elements:
-    ReuseComponentSupport.mixInto(this, "myPropertiesModelName");    
-    // Defensive call of init of the super class:
-    (UIComponent.prototype.init || jQuery.noop).apply(this, arguments);
-  },
+        init: function () {
+            //Transform this component into a reuse component for Fiori Elements:
+            ReuseComponentSupport.mixInto(this, "myPropertiesModelName");
+            // Defensive call of init of the super class:
+            (UIComponent.prototype.init || jQuery.noop).apply(this, arguments);
+
+            var oRoot = this.getRootControl();
+            if (oRoot) {
+                this.getComponentModel().setProperty("/View", oRoot);
+            }
+        },
 
         // Wird beim Navigieren zur Seite aufgerufen
         stStart: function (oModel, oBindingContext, oExtensionAPI) {
-            this._handleContext(oBindingContext);
+            this._handleContext(oExtensionAPI);
         },
 
         // Wird aufgerufen, wenn sich der Kontext ändert (z.B. neue Auswahl im LR)
         stRefresh: function (oModel, oBindingContext, oExtensionAPI) {
-            this._handleContext(oBindingContext);
+            this._handleContext(oExtensionAPI);
         },
 
-        _handleContext: function (oBindingContext) {
-            if (oBindingContext) {
-                // Pfad extrahieren, um z.B. eigene Smart Controls zu binden
-                var sPath = oBindingContext.getPath();
-                console.log("Navigiert mit Kontext-Pfad: " + sPath);
+        _handleContext: function (oExtensionAPI) {
+            var oComponentModel = this.getComponentModel();
+            var sPath = oExtensionAPI.getNavigationController().getCurrentKeys()[1];
+            var sBindingPath = "/Article(" + sPath + ")";
+            var oPathSpec = {
+                path: sBindingPath
+            };
 
-                // Zugriff auf Daten des Objekts
-                var oData = oBindingContext.getObject();
-                console.log("ID des Objekts:", oData.ID);
-            }
+            var oCanvasView = oComponentModel.getProperty("/View");
+            oCanvasView.bindElement(oPathSpec);
         }
     });
 });
