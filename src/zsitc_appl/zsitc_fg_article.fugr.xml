@@ -4,6 +4,7 @@
   <asx:values>
    <AREAT>Article</AREAT>
    <INCLUDES>
+    <SOBJ_NAME>LZSITC_FG_ARTICLETOP</SOBJ_NAME>
     <SOBJ_NAME>SAPLZSITC_FG_ARTICLE</SOBJ_NAME>
    </INCLUDES>
   </asx:values>
