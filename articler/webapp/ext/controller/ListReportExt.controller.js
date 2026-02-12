@@ -23,29 +23,29 @@ sap.ui.define([
             var oModel = this.getView().getModel();
             if (this.oActualTemplate == null || this.oActualTemplate === this.oTemplateColumnListItem) {
                 // Get selected contexts. The method can be called directly on extensionAPI
-                /*const aSelectedContexts = this.extensionAPI.getSelectedContexts();
+                /*var aSelectedContexts = this.extensionAPI.getSelectedContexts();
                 // Loop through the selected items and process their data
                 aSelectedContexts.forEach(function (oContext, i) {
                     // Get the bound data of the item
-                    //const oData = oContext.getObject();
+                    //var oData = oContext.getObject();
                     // Do something with the data, e.g., log it
                     //console.log(oData);
-                    const sPath = oContext.getPath();
+                    var sPath = oContext.getPath();
                     oModel.setProperty(sPath + "/Editable", true);
                 });*/
 
                 if (this.oEditTemplateColumnListItem == null) {
-                    const oColumnsListItem = this.oTable.getItems()[0];
+                    var oColumnsListItem = this.oTable.getItems()[0];
                     var aCells = oColumnsListItem.getCells();
                     this.oTemplateColumnListItem = new ColumnListItem({ cells: aCells });
                     this.oTemplateColumnListItem.mProperties = oColumnsListItem.mProperties;
                     this.oTemplateColumnListItem.mProperties.selected = false;
 
                     var aEditCells = [];
-                    const aColumns = this.oTable.getColumns();
+                    var aColumns = this.oTable.getColumns();
                     for (var i = 0; i < aColumns.length; i++) {
-                        const aSId = aColumns[i].sId.split("-");
-                        const strColumnName = '{' + aSId[aSId.length - 1] + '}';
+                        var aSId = aColumns[i].sId.split("-");
+                        var strColumnName = '{' + aSId[aSId.length - 1] + '}';
                         if (i <= 2) {
                             if (i == 1) {
                                 aEditCells[i] = new Select({
@@ -78,10 +78,10 @@ sap.ui.define([
 
                 this._rebindTable(this.oEditTemplateColumnListItem);
             } else {
-                /* const aItems = this.oTable.getItems();
+                /* var aItems = this.oTable.getItems();
                 aItems.forEach(function (oItem, i) {
-                    const oContext = oItem.getBindingContext();
-                    const sPath = oContext.getPath();
+                    var oContext = oItem.getBindingContext();
+                    var sPath = oContext.getPath();
                     oModel.setProperty(sPath + "/Editable", false);
                 }); */
 
@@ -94,7 +94,7 @@ sap.ui.define([
         },
 
         _rebindTable: function (oTemplate) {
-            const oBinding = this.oTable.getBinding("items");
+            var oBinding = this.oTable.getBinding("items");
             if (oBinding) {
                 var aAppliedFilters = oBinding.getFilters("Application");
                 var aAppliedSorters = oBinding.aSorters;
@@ -115,7 +115,7 @@ sap.ui.define([
         },
 
         _onSave(oEvent) {
-            const oModel = this.getView().getModel();
+            var oModel = this.getView().getModel();
             if (!oModel.hasPendingChanges()) {
                 MessageToast.show("There are no changes.");
                 return;
@@ -133,11 +133,11 @@ sap.ui.define([
                 }.bind(this)
             });
 
-            /*  const aItems = this.oTable.getItems();
+            /*  var aItems = this.oTable.getItems();
              var aData = [];
              aItems.forEach(function (oItem) {
-                 const oContext = oItem.getBindingContext();
-                 const oObject = oContext.getObject();
+                 var oContext = oItem.getBindingContext();
+                 var oObject = oContext.getObject();
                  // if (oObject.Editable) {
                  aData.push(oContext.getObject());
                  //};
@@ -214,27 +214,27 @@ sap.ui.define([
 
         _onAddInfo(oEvent) {
             // set Model for addInfo
-            const oBindingContexts = this.extensionAPI.getSelectedContexts();
-            const oBindingContext = oBindingContexts[0];
+            var oBindingContexts = this.extensionAPI.getSelectedContexts();
+            var oBindingContext = oBindingContexts[0];
             if (!oBindingContext) {
                 return;
             }
-            const oView = this.getView();
+            var oView = this.getView();
 
-            //const oObject = oBindingContext.getObject();            
-            //const oData = {
+            //var oObject = oBindingContext.getObject();            
+            //var oData = {
             //    article: {
             //        ArticleNo: oObject.ArticleNo
             //    }
             //};
-            //const oModel = new JSONModel(oData);
+            //var oModel = new JSONModel(oData);
             //oView.setModel(oModel, "addInfo");
 
-            const sPath = oBindingContext.getPath().substr(1);
+            var sPath = oBindingContext.getPath().substr(1);
             oView.bindElement({
                 path: "/" + window.decodeURIComponent(oBindingContext.getPath().substr(1))
             });
-            //const oObject = oView.getBindingContext().getObject();
+            //var oObject = oView.getBindingContext().getObject();
 
             if (!this._addInfoDialog) {
                 // set dialog
@@ -261,10 +261,10 @@ sap.ui.define([
         },
 
         _onNavigateToSupplierList: function (oEvent) {
-            const oContext = this.extensionAPI.getSelectedContexts()[0];
-            const oData = oContext.getObject();
+            var oContext = this.extensionAPI.getSelectedContexts()[0];
+            var oData = oContext.getObject();
 
-            const oNavigationController = this.extensionAPI.getNavigationController();
+            var oNavigationController = this.extensionAPI.getNavigationController();
             oNavigationController.navigateInternal("'" + this._adjustGuid(oData.ArticleID + "'"), {
                 routeName: "RouteSupplierList"
             });

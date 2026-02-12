@@ -6,4 +6,28 @@ controllerName="zsitc.articler.SupplierList.controller.SupplierList"
 	<ObjectHeader
 			intro="{ArticleID}"
 			title="{ArticleNo}"/>
+	 <Table
+        id="supplierList"
+        class="saUiResponsiveMargin"
+        width="auto"
+        items="{ path: 'to_Text' }">
+        <columns>
+            <Column>
+                <Text text="Language"/>
+            </Column>
+            <Column>
+                <Text text="Description"/>
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{Language}"/>
+                </cells>
+                <cells>
+                    <Text text="{Description}"/>
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>		
 </mvc:View>

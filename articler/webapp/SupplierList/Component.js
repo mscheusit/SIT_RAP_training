@@ -29,15 +29,26 @@ sap.ui.define(["sap/ui/core/UIComponent", "sap/suite/ui/generic/template/extensi
         },
 
         _handleContext: function (oExtensionAPI) {
-            const oComponentModel = this.getComponentModel();
-            const sPath = oExtensionAPI.getNavigationController().getCurrentKeys()[1];
-            const sBindingPath = "/Article(" + sPath + ")";
-            const oPathSpec = {
+            var oComponentModel = this.getComponentModel();
+            var sKey = oExtensionAPI.getNavigationController().getCurrentKeys()[1];
+            var sBindingPath = "/Article(" + sKey + ")";
+            var oPathSpec = {
                 path: sBindingPath
             };
 
-            const oSupplierListView = oComponentModel.getProperty("/View");
+            var oSupplierListView = oComponentModel.getProperty("/View");
             oSupplierListView.bindElement(oPathSpec);
+
+            //var oTable = oSupplierListView.byId("supplierList");
+            //sBindingPath = sBindingPath + "/ArticleText";
+            //oPathSpec = {
+            //    path: sBindingPath
+            //};
+            //oTable.bindElement(oPathSpec);
+
+            //var oFilter = new sap.ui.model.Filter("ArticleID", sap.ui.model.FilterOperator.EQ, sKey);
+            //var oBinding = oTable.getBinding("items");
+            //oBinding.filter([oFilter]);
         }
     });
 });
