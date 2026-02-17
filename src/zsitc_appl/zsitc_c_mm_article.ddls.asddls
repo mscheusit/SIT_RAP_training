@@ -46,6 +46,12 @@ define root view entity ZSITC_C_MM_Article
                   position: 20,
                   type: #LINEITEM_REFERENCE,
                   targetElement: '_Text'
+              },
+              {
+                  label: 'Supplier',
+                  position: 30,
+                  type: #LINEITEM_REFERENCE,
+                  targetElement: '_Supplier'
               }
             ]
           @UI.hidden: true

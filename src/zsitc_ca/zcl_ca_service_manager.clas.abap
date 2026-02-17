@@ -189,7 +189,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_ca_service_manager IMPLEMENTATION.
+CLASS ZCL_CA_SERVICE_MANAGER IMPLEMENTATION.
 
 
   METHOD set_enqueue_params.

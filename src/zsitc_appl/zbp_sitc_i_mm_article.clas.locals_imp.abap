@@ -24,8 +24,8 @@ CLASS lhc_articlesupplier IMPLEMENTATION.
 
     LOOP AT lt_article ASSIGNING FIELD-SYMBOL(<ls_article>).
       DATA(lv_is_upd_able) = zcl_mm_i_article=>is_update_able( CORRESPONDING #( <ls_article> ) ).
-      result = VALUE #( FOR <ls_article_text> IN lt_article_supplier USING KEY entity WHERE ( ArticleID = <ls_article>-ArticleID )
-       ( %tky = <ls_article_text>-%tky
+      result = VALUE #( FOR <ls_article_supplier> IN lt_article_supplier USING KEY entity WHERE ( ArticleID = <ls_article>-ArticleID )
+       ( %tky = <ls_article_supplier>-%tky
          %features-%update = COND #( WHEN lv_is_upd_able = abap_true THEN if_abap_behv=>fc-o-enabled ELSE if_abap_behv=>fc-o-disabled )
          %features-%delete = COND #( WHEN lv_is_upd_able = abap_true THEN if_abap_behv=>fc-o-enabled ELSE if_abap_behv=>fc-o-disabled ) ) ).
     ENDLOOP.
@@ -106,6 +106,8 @@ CLASS lhc_Article DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS earlynumbering_cba_Text FOR NUMBERING
       IMPORTING entities FOR CREATE Article\_Text.
+    METHODS earlynumbering_cba_Supplier FOR NUMBERING
+      IMPORTING entities FOR CREATE Article\_Supplier.
 
 ENDCLASS.
 
@@ -168,6 +170,23 @@ CLASS lhc_Article IMPLEMENTATION.
 
   ENDMETHOD.
 
+  METHOD earlynumbering_cba_Supplier.
+
+    READ ENTITIES OF ZSITC_I_MM_Article IN LOCAL MODE
+        ENTITY article BY \_Supplier
+          FROM CORRESPONDING #( entities )
+          LINK DATA(lt_supplier).
+
+    " Loop over all unique TravelIDs
+    LOOP AT entities ASSIGNING FIELD-SYMBOL(<ls_supplier>) GROUP BY <ls_supplier>-ArticleID.
+      LOOP AT <ls_supplier>-%target ASSIGNING FIELD-SYMBOL(<ls_supplier_trg>).
+        " language is mandatory
+        APPEND CORRESPONDING #( <ls_supplier_trg> ) TO mapped-articlesupplier ASSIGNING FIELD-SYMBOL(<ls_article_supplier>).
+      ENDLOOP.
+    ENDLOOP.
+
+  ENDMETHOD.
+
   METHOD validateArticleNo.
 
     CHECK zcl_mm_i_article=>gv_eml_bo_bl_enabled = abap_true.
@@ -209,6 +228,7 @@ CLASS lhc_Article IMPLEMENTATION.
       result = VALUE #( BASE result (  %tky = <ls_article>-%tky
                                        %features-%action-release = COND #( WHEN lv_is_upd_able = abap_true THEN if_abap_behv=>fc-o-enabled ELSE if_abap_behv=>fc-o-disabled )
                                        %assoc-_Text = COND #( WHEN lv_is_upd_able = abap_true THEN if_abap_behv=>fc-o-enabled ELSE if_abap_behv=>fc-o-disabled )
+                                       %assoc-_Supplier = COND #( WHEN lv_is_upd_able = abap_true THEN if_abap_behv=>fc-o-enabled ELSE if_abap_behv=>fc-o-disabled )
                                        %features-%update = COND #( WHEN lv_is_upd_able = abap_true THEN if_abap_behv=>fc-o-enabled ELSE if_abap_behv=>fc-o-disabled ) ) ).
     ENDLOOP.
 

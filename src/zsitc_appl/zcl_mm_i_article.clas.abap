@@ -19,7 +19,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_mm_i_article IMPLEMENTATION.
+CLASS ZCL_MM_I_ARTICLE IMPLEMENTATION.
 
 
   METHOD create_key.
@@ -35,6 +35,7 @@ CLASS zcl_mm_i_article IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD check_article_no.
 
     FIND first OCCURRENCE OF PCRE '[^a-zA-Z0-9\s]' IN is_article-ArticleNo.
@@ -49,5 +50,4 @@ CLASS zcl_mm_i_article IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
-
 ENDCLASS.
