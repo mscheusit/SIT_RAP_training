@@ -10,22 +10,16 @@ controllerName="zsitc.articler.SupplierList.controller.SupplierList"
         id="supplierList"
         class="saUiResponsiveMargin"
         width="auto"
-        items="{ path: 'to_Text' }">
+        items="{ path: 'to_Supplier' }">
         <columns>
             <Column>
-                <Text text="Language"/>
-            </Column>
-            <Column>
-                <Text text="Description"/>
+                <Text text="Supplier"/>
             </Column>
         </columns>
         <items>
             <ColumnListItem>
                 <cells>
-                    <Text text="{Language}"/>
-                </cells>
-                <cells>
-                    <Text text="{Description}"/>
+                    <Text text="{Supplier}"/>
                 </cells>
             </ColumnListItem>
         </items>

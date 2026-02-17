@@ -97,7 +97,7 @@
       },
       "": {
         "dataSource": "mainService",
-        "preload": false,
+        "preload": true,
         "settings": {
           "defaultBindingMode": "TwoWay",
           "defaultCountMode": "Inline",
@@ -203,6 +203,14 @@
               "ObjectPage|to_Text": {
                 "navigationProperty": "to_Text",
                 "entitySet": "ArticleText",
+                "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                "component": {
+                  "name": "sap.suite.ui.generic.template.ObjectPage"
+                }
+              },
+              "ObjectPage|to_Supplier": {
+                "navigationProperty": "to_Supplier",
+                "entitySet": "ArticleSupplier",
                 "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
                 "component": {
                   "name": "sap.suite.ui.generic.template.ObjectPage"

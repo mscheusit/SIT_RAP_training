@@ -67,6 +67,10 @@
                             <PropertyValue Property="Label" String="Text"/>
                             <PropertyValue Property="Target" AnnotationPath="to_Text/@UI.LineItem"/>
                         </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Supplier"/>
+                            <PropertyValue Property="Target" AnnotationPath="to_Supplier/@UI.LineItem"/>
+                        </Record>
                     </Collection>
                 </Annotation>
                 <Annotation Term="UI.HeaderInfo">
