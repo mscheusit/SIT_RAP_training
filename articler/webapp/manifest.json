@@ -72,6 +72,7 @@
         "sap.ui.core": {},
         "sap.ushell": {},
         "sap.f": {},
+        "sap.ui.table": {},
         "sap.ui.comp": {},
         "sap.ui.generic.app": {},
         "sap.suite.ui.generic.template": {}
@@ -188,7 +189,10 @@
             },
             "tableSettings": {
               "type": "ResponsiveTable",
-              "multiSelect": true
+              "multiSelect": true,
+              "multiEdit": {
+                "enabled": true
+              }
             }
           }
         },

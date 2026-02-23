@@ -17,8 +17,7 @@
         "sap.m": {},
         "sap.ui.core": {},
         "sap.ui.comp": {},
-        "sap.ui.generic.app": {},
-        "sap.suite.ui.generic.template": {}
+        "sap.ui.generic.app": {}
       },
       "models": {
         "reuseModel": {
