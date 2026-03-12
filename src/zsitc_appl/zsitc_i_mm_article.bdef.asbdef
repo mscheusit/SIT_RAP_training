@@ -31,6 +31,18 @@ authorization master ( instance )
     field ArticleNo
     // target field.
     affects field LastChangedAt;
+
+    field ArticleType
+    affects field LastChangedAt;
+
+    field RegularVendor
+    affects field LastChangedAt;
+
+    field Released
+    affects field LastChangedAt;
+
+    field ReleasedDate
+    affects field LastChangedAt;
   }
 
   mapping for zsitc_mm_article
