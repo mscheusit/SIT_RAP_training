@@ -12,6 +12,7 @@ sap.ui.define(["sap/ui/core/UIComponent", "sap/suite/ui/generic/template/extensi
             // Defensive call of init of the super class:
             (UIComponent.prototype.init || jQuery.noop).apply(this, arguments);
 
+            // Set root view to component model
             var oRoot = this.getRootControl();
             if (oRoot) {
                 this.getComponentModel().setProperty("/View", oRoot);
