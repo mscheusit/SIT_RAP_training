@@ -32,15 +32,19 @@ authorization master ( instance )
     // target field.
     affects field LastChangedAt;
 
+    // if field ArticleType is changed (Trigger),
     field ArticleType
     affects field LastChangedAt;
 
+    // if field RegularVendor is changed (Trigger),
     field RegularVendor
     affects field LastChangedAt;
 
+    // if field Released is changed (Trigger),
     field Released
     affects field LastChangedAt;
 
+    // if field ReleasedDate is changed (Trigger),
     field ReleasedDate
     affects field LastChangedAt;
   }
